@@ -65,11 +65,28 @@ module ISO
     @specifications = nil
 
     # Load the IBAN specifications file, which determines how the IBAN
-    # for any given country looks like
+    # for any given country looks like.
+    #
+    # It will use the following sources in this order (first one which exists wins)
+    #
+    # * Path passed as spec_file parameter
+    # * Path provided by the env variable IBAN_SPECIFICATIONS
+    # * The file ../data/iso-iban/specs.yaml relative to the lib dir
+    # * The Gem datadir path
+    #
+    # @param [String] spec_file
+    #   Override the default specifications file path.
     #
     # @return [self]
     def self.load_specifications(spec_file=nil)
-      spec_file ||= 'data/iso-iban/specs.yaml'
+      if spec_file then
+        # do nothing
+      elsif ENV['IBAN_SPECIFICATIONS'] then
+        spec_file = ENV['IBAN_SPECIFICATIONS']
+      else
+        spec_file = File.expand_path('../../../../data/iso-iban/specs.yaml', __FILE__)
+        spec_file = Gem.datadir('iso-iban')+'/specs.yaml' if defined?(Gem) && !File.file?(spec_file)
+      end
 
       @specifications = ISO::IBAN::Specification.load_yaml(spec_file)
 
@@ -195,6 +212,7 @@ module ISO
     end
 
     # Validation error codes:
+    #
     # * :invalid_country
     # * :invalid_checksum
     # * :invalid_length
@@ -270,7 +288,8 @@ module ISO
     end
 
     # See Object#<=>
-    # @return [-1,0,1,nil]
+    #
+    # @return [-1, 0, 1, nil]
     def <=>(other)
       other.respond_to?(:compact) ? @compact <=> other.compact : nil
     end
@@ -297,7 +316,7 @@ module ISO
       sprintf "#<%p %s>", self.class, formatted
     end
 
-    # @return [String] The compact form of the IBAN as a String
+    # @return [String] The compact form of the IBAN as a String.
     def to_s
       @compact.dup
     end
