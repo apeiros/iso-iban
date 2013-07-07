@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
 <title>
   File: README
   
@@ -74,10 +74,10 @@ It provides methods to generate valid IBAN numbers from components, or to valida
 
 <h2>Usage</h2>
 
-<pre class="code ruby"><code class="ruby"><span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CH35 1234 5987 6543 2109 A</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>     <span class='comment'># =&gt; true
-</span><span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CH37 1234 5987 6543 2109 A</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>   <span class='comment'># =&gt; [:invalid_checksum]
-</span><span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_generate'>generate</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CH</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>12345</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>987</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>           <span class='comment'># =&gt; #&lt;ISO::IBAN CH76 1234 5000 0000 0098 7&gt;
-</span><span class='id identifier rubyid_iban'>iban</span> <span class='op'>=</span> <span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CH35 1234 5987 6543 2109 A</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; #&lt;ISO::IBAN CH35 1234 5987 6543 2109 A&gt;
+<pre class="code ruby"><code class="ruby"><span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>CH35 1234 5987 6543 2109 A</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>     <span class='comment'># =&gt; true
+</span><span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>CH37 1234 5987 6543 2109 A</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>   <span class='comment'># =&gt; [:invalid_checksum]
+</span><span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_generate'>generate</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>CH</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>12345</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>987</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>           <span class='comment'># =&gt; #&lt;ISO::IBAN CH76 1234 5000 0000 0098 7&gt;
+</span><span class='id identifier rubyid_iban'>iban</span> <span class='op'>=</span> <span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>CH35 1234 5987 6543 2109 A</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; #&lt;ISO::IBAN CH35 1234 5987 6543 2109 A&gt;
 </span><span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_formatted'>formatted</span>       <span class='comment'># =&gt; &quot;CH35 1234 5987 6543 2109 A&quot;
 </span><span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span>         <span class='comment'># =&gt; &quot;CH351234598765432109A&quot;
 </span><span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_country'>country</span>         <span class='comment'># =&gt; &quot;CH&quot;
@@ -97,7 +97,6 @@ It provides methods to generate valid IBAN numbers from components, or to valida
 <li><a href="https://rubygems.org/gems/iso-iban">RubyGems Site</a></li>
 </ul>
 
-
 <h2>License</h2>
 
 <p>You can use this code under the <a href="file.LICENSE.html" title="BSD-2-Clause License">BSD-2-Clause License</a>, free of charge.
@@ -105,9 +104,9 @@ If you need a different license, please ask the author.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Sun Jul  7 20:37:42 2013 by
+  Generated on Sun Jul  7 21:24:39 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.6.2 (ruby-2.0.0).
+  0.8.6.2 (ruby-1.9.3).
 </div>
 
   </body>
