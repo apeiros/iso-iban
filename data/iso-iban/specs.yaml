@@ -1,0 +1,838 @@
+---
+AL:
+- Albania
+- AL
+- AL2!n8!n16!c
+- 28
+- 8!n16!c
+- 24
+- 4
+- 6
+- 
+- 
+AD:
+- Andorra
+- AD
+- AD2!n4!n4!n12!c
+- 24
+- 4!n4!n12!c
+- 20
+- 4
+- 7
+- 
+- 
+AT:
+- Austria
+- AT
+- AT2!n5!n11!n
+- 20
+- 5!n11!n
+- 16
+- 4
+- 8
+- 
+- 
+AZ:
+- Republic of Azerbaijan
+- AZ
+- AZ2!n4!a20!c
+- 28
+- 4!a20!c
+- 24
+- 4
+- 7
+- 
+- 
+BH:
+- Bahrain (Kingdom of)
+- BH
+- BH2!n4!a14!c
+- 22
+- 4!a14!c
+- 22
+- 4
+- 7
+- 
+- 
+BE:
+- Belgium
+- BE
+- BE2!n3!n7!n2!n
+- 16
+- 3!n7!n2!n
+- 12
+- 4
+- 6
+- 
+- 
+BA:
+- Bosnia and Herzegovina
+- BA
+- BA2!n3!n3!n8!n2!n
+- 20
+- 3!n3!n8!n2!n
+- 16
+- 4
+- 6
+- 7
+- 9
+BR:
+- Brazil
+- BR
+- BR2!n8!n5!n10!n1!a1!c
+- 29
+- 8!n5!n10!n1!a1!c
+- 25
+- 4
+- 11
+- 
+- 
+BG:
+- Bulgaria
+- BG
+- BG2!n4!a4!n2!n8!c
+- 22
+- 4!a4!n2!n8!c
+- 18
+- 4
+- 7
+- 8
+- 11
+CR:
+- Costa Rica
+- CR
+- CR2!n3!n14!n
+- 21
+- 3!n14!n
+- 7
+- 4
+- 6
+- 
+- 
+HR:
+- Croatia
+- HR
+- HR2!n7!n10!n
+- 21
+- 7!n10!n
+- 17
+- 4
+- 10
+- 
+- 
+CY:
+- Cyprus
+- CY
+- CY2!n3!n5!n16!c
+- 28
+- 3!n5!n16!c
+- 24
+- 4
+- 6
+- 7
+- 11
+CZ:
+- Czech Republic
+- CZ
+- CZ2!n4!n6!n10!n
+- 24
+- 4!n6!n10!n
+- 20
+- 4
+- 7
+- 
+- 
+DK:
+- Denmark
+- DK
+- DK2!n4!n9!n1!n, FO2!n4!n9!n1!n, GL2!n4!n9!n1!n
+- 18
+- 4!n9!n1!n
+- 14
+- 4
+- 7
+- 
+- 
+FO:
+- Denmark
+- FO
+- DK2!n4!n9!n1!n, FO2!n4!n9!n1!n, GL2!n4!n9!n1!n
+- 18
+- 4!n9!n1!n
+- 14
+- 4
+- 7
+- 
+- 
+GL:
+- Denmark
+- GL
+- DK2!n4!n9!n1!n, FO2!n4!n9!n1!n, GL2!n4!n9!n1!n
+- 18
+- 4!n9!n1!n
+- 14
+- 4
+- 7
+- 
+- 
+DO:
+- Dominican Republic
+- DO
+- DO2!n4!c20!n
+- 28
+- 4!c20!n
+- 24
+- 4
+- 7
+- 
+- 
+EE:
+- Estonia
+- EE
+- EE2!n2!n2!n11!n1!n
+- 20
+- 2!n2!n11!n1!n
+- 16
+- 4
+- 5
+- 
+- 
+FI:
+- Finland
+- FI
+- FI2!n6!n7!n1!n
+- 18
+- Not in use
+- 0
+- 4
+- 6
+- 
+- 
+FR:
+- France
+- FR
+- FR2!n5!n5!n11!c2!n
+- 27
+- 5!n5!n11!c2!n
+- 23
+- 4
+- 8
+- 
+- 
+GF:
+- France
+- GF
+- FR2!n5!n5!n11!c2!n
+- 27
+- 5!n5!n11!c2!n
+- 23
+- 4
+- 8
+- 
+- 
+GP:
+- France
+- GP
+- FR2!n5!n5!n11!c2!n
+- 27
+- 5!n5!n11!c2!n
+- 23
+- 4
+- 8
+- 
+- 
+MQ:
+- France
+- MQ
+- FR2!n5!n5!n11!c2!n
+- 27
+- 5!n5!n11!c2!n
+- 23
+- 4
+- 8
+- 
+- 
+RE:
+- France
+- RE
+- FR2!n5!n5!n11!c2!n
+- 27
+- 5!n5!n11!c2!n
+- 23
+- 4
+- 8
+- 
+- 
+PF:
+- France
+- PF
+- FR2!n5!n5!n11!c2!n
+- 27
+- 5!n5!n11!c2!n
+- 23
+- 4
+- 8
+- 
+- 
+TF:
+- France
+- TF
+- FR2!n5!n5!n11!c2!n
+- 27
+- 5!n5!n11!c2!n
+- 23
+- 4
+- 8
+- 
+- 
+YT:
+- France
+- YT
+- FR2!n5!n5!n11!c2!n
+- 27
+- 5!n5!n11!c2!n
+- 23
+- 4
+- 8
+- 
+- 
+NC:
+- France
+- NC
+- FR2!n5!n5!n11!c2!n
+- 27
+- 5!n5!n11!c2!n
+- 23
+- 4
+- 8
+- 
+- 
+BL:
+- France
+- BL
+- FR2!n5!n5!n11!c2!n
+- 27
+- 5!n5!n11!c2!n
+- 23
+- 4
+- 8
+- 
+- 
+MF:
+- France
+- MF
+- FR2!n5!n5!n11!c2!n
+- 27
+- 5!n5!n11!c2!n
+- 23
+- 4
+- 8
+- 
+- 
+PM:
+- France
+- PM
+- FR2!n5!n5!n11!c2!n
+- 27
+- 5!n5!n11!c2!n
+- 23
+- 4
+- 8
+- 
+- 
+WF:
+- France
+- WF
+- FR2!n5!n5!n11!c2!n
+- 27
+- 5!n5!n11!c2!n
+- 23
+- 4
+- 8
+- 
+- 
+GE:
+- Georgia
+- GE
+- GE2!n2!a16!n
+- 22
+- 2!a16!n
+- 18
+- 4
+- 5
+- 
+- 
+DE:
+- Germany
+- DE
+- DE2!n8!n10!n
+- 22
+- 8!n10!n;
+- 18
+- 4
+- 11
+- 
+- 
+GI:
+- Gibraltar
+- GI
+- 'GI2!n4!a15!c:'
+- 23
+- 4!a15!c
+- 19
+- 4
+- 7
+- 
+- 
+GR:
+- Greece
+- GR
+- GR2!n3!n4!n16!c
+- 27
+- 3!n4!n16!c
+- 23
+- 4
+- 6
+- 7
+- 10
+GT:
+- Guatemala
+- GT
+- GT2!n4!c20!c
+- 28
+- 4!c20!c
+- 24
+- 4
+- 7
+- 
+- 
+HU:
+- Hungary
+- HU
+- HU2!n3!n4!n1!n15!n1!n
+- 28
+- '3!n4!n1!n15!n1!n:'
+- 24
+- 4
+- 6
+- 7
+- 10
+IS:
+- Iceland
+- IS
+- IS2!n4!n2!n6!n10!n
+- 26
+- 4!n2!n6!n10!n
+- 22
+- 4
+- 7
+- 
+- 
+IE:
+- Ireland
+- IE
+- IE2!n4!a6!n8!n
+- 22
+- 4!a6!n8!n
+- 18
+- 4
+- 7
+- 
+- 
+IL:
+- Israel
+- IL
+- IL2!n3!n3!n13!n
+- 23
+- 3!n3!n13!n
+- 19
+- 4
+- 6
+- 
+- 
+IT:
+- Italy
+- IT
+- IT2!n1!a5!n5!n12!c
+- 27
+- 1!a5!n5!n12!c
+- 23
+- 5
+- 9
+- 10
+- 14
+KW:
+- Kuwait
+- KW
+- KW2!n4!a22!
+- 30
+- 4!a22!c
+- 26
+- 4
+- 7
+- 
+- 
+KZ:
+- Kazakhstan
+- KZ
+- 2!a2!n3!n13!c 1,2 characters – country code (KZ) 3,4 characters – IBAN check digits
+  5,7 characters – bank identifier  8-20 characters – intrabank account number
+- 0
+- 3!n13!c
+- 16
+- 4
+- 6
+- 
+- 
+LV:
+- Latvia
+- LV
+- LV2!n4!a13!c
+- 21
+- 4!a13!c
+- 17
+- 4
+- 7
+- 
+- 
+LB:
+- Lebanon
+- LB
+- LB2!n4!n20!c
+- 28
+- 4!n20!c
+- 24
+- 4
+- 7
+- 
+- 
+LI:
+- Liechtenstein (Principality of)
+- LI
+- LI2!n5!n12!c
+- 21
+- 5!n12!c
+- 19
+- 4
+- 8
+- 
+- 
+LT:
+- Lithuania
+- LT
+- LT2!n5!n11!n
+- 20
+- 5!n11!n
+- 16
+- 4
+- 8
+- 
+- 
+LU:
+- Luxembourg
+- LU
+- LU2!n3!n13!c
+- 20
+- 3!n13!c
+- 16
+- 4
+- 6
+- 
+- 
+MK:
+- Macedonia, Former Yugoslav Republic of
+- MK
+- MK2!n3!n10!c2!n
+- 19
+- 3!n10!c2!n
+- 15
+- 4
+- 6
+- 
+- 
+MT:
+- Malta
+- MT
+- MT2!n4!a5!n18!c
+- 31
+- 4!a5!n18!c
+- 27
+- 4
+- 7
+- 8
+- 12
+MR:
+- Mauritania
+- MR
+- MR135!n5!n11!n2!n
+- 27
+- 5!n5!n11!n2!n
+- 23
+- 4
+- 8
+- 9
+- 13
+MU:
+- Mauritius
+- MU
+- MU2!n4!a2!n2!n12!n3!n3!a
+- 30
+- 4!a2!n2!n12!n3!n3!a
+- 26
+- 4
+- 9
+- 10
+- 11
+MD:
+- Republic of Moldova
+- MD
+- MD2!n20!c
+- 24
+- 2!c18!c
+- 20
+- 4
+- 5
+- 
+- 
+MC:
+- Monaco
+- MC
+- MC2!n5!n5!n11!c2!n
+- 27
+- 5!n5!n11!c2!n
+- 23
+- 4
+- 8
+- 9
+- 13
+ME:
+- Montenegro
+- ME
+- ME2!n3!n13!n2!n
+- 22
+- 3!n13!n2!n
+- 18
+- 4
+- 6
+- 
+- 
+NL:
+- The Netherlands
+- NL
+- NL2!n4!a10!n
+- 18
+- 4!a10!n
+- 14
+- 4
+- 7
+- 
+- 
+'NO':
+- Norway
+- 'NO'
+- NO2!n4!n6!n1!n
+- 15
+- 4!n6!n1!n
+- 11
+- 4
+- 7
+- 
+- 
+PK:
+- Pakistan
+- PK
+- PK2!n4!a16!c
+- 24
+- 4!a16!c
+- 20
+- 4
+- 7
+- 
+- 
+PS:
+- Palestine, State of
+- PS
+- PS2!n4!a21!c
+- 29
+- 4!a21!c
+- 25
+- 4
+- 7
+- 
+- 
+PL:
+- Poland
+- PL
+- PL2!n8!n16n
+- 28
+- 8!n16!n
+- 24
+- 4
+- 11
+- 
+- 
+PT:
+- Portugal
+- PT
+- PT2!n4!n4!n11!n2!n
+- 25
+- 4!n4!n11!n2!n
+- 21
+- 4
+- 7
+- 8
+- 11
+RO:
+- Romania
+- RO
+- RO2!n4!a16!c
+- 24
+- 4!a16!c
+- 20
+- 4
+- 7
+- 
+- 
+SM:
+- San Marino
+- SM
+- SM2!n1!a5!n5!n12!c
+- 27
+- 1!a5!n5!n12!c
+- 23
+- 5
+- 9
+- 10
+- 14
+SA:
+- Saudi Arabia
+- SA
+- SA2!n2!n18!c
+- 24
+- 2!n18!c
+- 20
+- 4
+- 5
+- 
+- 
+RS:
+- Serbia
+- RS
+- RS2!n3!n13!n2!n
+- 22
+- 3!n13!n2!n
+- 18
+- 4
+- 6
+- 
+- 
+SK:
+- Slovak Republic
+- SK
+- SK2!n4!n6!n10!n
+- 24
+- 4!n6!n10!n
+- 20
+- 4
+- 7
+- 
+- 
+SI:
+- Slovenia
+- SI
+- SI2!n5!n8!n2!n
+- 19
+- 5!n8!n2!n
+- 15
+- 4
+- 8
+- 
+- 
+ES:
+- Spain
+- ES
+- ES2!n4!n4!n1!n1!n10!n
+- 24
+- 4!n4!n1!n1!n10!n
+- 20
+- 4
+- 7
+- 8
+- 11
+SE:
+- Sweden
+- SE
+- SE2!n3!n16!n1!n
+- 24
+- 3!n16!n1!n
+- 20
+- 4
+- 6
+- 
+- 
+CH:
+- Switzerland
+- CH
+- CH2!n5!n12!c
+- 21
+- 5!n12!c
+- 17
+- 4
+- 8
+- 
+- 
+TN:
+- Tunisia
+- TN
+- TN592!n3!n13!n2!n
+- 24
+- 2!n3!n13!n2!n
+- 20
+- 4
+- 5
+- 
+- 
+TR:
+- Turkey
+- TR
+- TR2!n5!n1!c16!c
+- 26
+- 5!n1!c16!c
+- 22
+- 4
+- 8
+- 
+- 
+AE:
+- United Arab Emirates
+- AE
+- AE07 0331 2345 6789 0123 456
+- 23
+- 3!n16!n
+- 19
+- 4
+- 6
+- 
+- 
+GB:
+- United Kingdom
+- GB
+- GB2!n4!a6!n8!n
+- 22
+- 4!a6!n8!n
+- 18
+- 4
+- 7
+- 
+- 
+VG:
+- Virgin Islands, British
+- VG
+- VG2!n4!a16!n
+- 24
+- 4!a16!n
+- 20
+- 4
+- 7
+- 
+- 

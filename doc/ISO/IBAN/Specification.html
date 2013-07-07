@@ -1,0 +1,1615 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: ISO::IBAN::Specification
+  
+    &mdash; Documentation by YARD 0.8.6.2
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (S)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../ISO.html" title="ISO (module)">ISO</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../IBAN.html" title="ISO::IBAN (class)">IBAN</a></span></span>
+     &raquo; 
+    <span class="title">Specification</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: ISO::IBAN::Specification
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ISO::IBAN::Specification</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/iso/iban/specification.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>Specification of the IBAN format for one country. Every country has its
+own specification of the IBAN format.
+SWIFT is the official authority where those formats are registered.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="StructureCodes-constant" class="">StructureCodes =
+          <div class="docstring">
+  <div class="discussion">
+    <p>A mapping from SWIFT structure specification to PCRE regex.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>n</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\d</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>[A-Z]</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>c</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>[A-Za-z0-9]</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>e</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> </span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+<span class='rbrace'>}</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#a2_country_code-instance_method" title="#a2_country_code (instance method)">- (Object) <strong>a2_country_code</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute a2_country_code.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bank_position_from-instance_method" title="#bank_position_from (instance method)">- (Object) <strong>bank_position_from</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute bank_position_from.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bank_position_to-instance_method" title="#bank_position_to (instance method)">- (Object) <strong>bank_position_to</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute bank_position_to.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bban_length-instance_method" title="#bban_length (instance method)">- (Object) <strong>bban_length</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute bban_length.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bban_structure-instance_method" title="#bban_structure (instance method)">- (Object) <strong>bban_structure</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute bban_structure.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#branch_position_from-instance_method" title="#branch_position_from (instance method)">- (Object) <strong>branch_position_from</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute branch_position_from.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#branch_position_to-instance_method" title="#branch_position_to (instance method)">- (Object) <strong>branch_position_to</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute branch_position_to.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#country_name-instance_method" title="#country_name (instance method)">- (Object) <strong>country_name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute country_name.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#iban_length-instance_method" title="#iban_length (instance method)">- (Object) <strong>iban_length</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute iban_length.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#iban_structure-instance_method" title="#iban_structure (instance method)">- (Object) <strong>iban_structure</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute iban_structure.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#load_yaml-class_method" title="load_yaml (class method)">+ (Hash&lt;String =&gt; ISO::IBAN::Specification&gt;) <strong>load_yaml</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Load the specifications YAML.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_file-class_method" title="parse_file (class method)">+ (Array&lt;ISO::IBAN::Specification&gt;) <strong>parse_file</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Parse the SWIFT provided file (which sadly is a mess).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#structure_regex-class_method" title="structure_regex (class method)">+ (Object) <strong>structure_regex</strong>(structure, anchored = true) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p><em>n:   Digits (numeric characters 0 to 9 only)
+</em>a:   Upper case letters (alphabetic characters A-Z only)
+<em>c:   upper and lower case alphanumeric characters (A-Z, a-z and 0-9)
+</em>e:   blank space
+<em>nn!: fixed length
+</em>nn:  maximum length.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#component_lengths-instance_method" title="#component_lengths (instance method)">- (Array&lt;Integer&gt;) <strong>component_lengths</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>An array with the lengths of all components.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#iban_regex-instance_method" title="#iban_regex (instance method)">- (Regexp) <strong>iban_regex</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>A regex to verify the structure of the IBAN.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Specification) <strong>initialize</strong>(country_name, a2_country_code, iban_structure, iban_length, bban_structure, bban_length, bank_position_from, bank_position_to, branch_position_from, branch_position_to) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>A new instance of Specification.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_a-instance_method" title="#to_a (instance method)">- (Array) <strong>to_a</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>An array with the Specification properties.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#unanchored_iban_regex-instance_method" title="#unanchored_iban_regex (instance method)">- (Regexp) <strong>unanchored_iban_regex</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>A regex to identify the structure of the IBAN, without anchors.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="ISO::IBAN::Specification (class)">Specification</a></span></tt>) <strong>initialize</strong>(country_name, a2_country_code, iban_structure, iban_length, bban_structure, bban_length, bank_position_from, bank_position_to, branch_position_from, branch_position_to) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>A new instance of Specification</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/specification.rb', line 83</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_country_name'>country_name</span><span class='comma'>,</span> <span class='id identifier rubyid_a2_country_code'>a2_country_code</span><span class='comma'>,</span> <span class='id identifier rubyid_iban_structure'>iban_structure</span><span class='comma'>,</span> <span class='id identifier rubyid_iban_length'>iban_length</span><span class='comma'>,</span> <span class='id identifier rubyid_bban_structure'>bban_structure</span><span class='comma'>,</span> <span class='id identifier rubyid_bban_length'>bban_length</span><span class='comma'>,</span> <span class='id identifier rubyid_bank_position_from'>bank_position_from</span><span class='comma'>,</span> <span class='id identifier rubyid_bank_position_to'>bank_position_to</span><span class='comma'>,</span> <span class='id identifier rubyid_branch_position_from'>branch_position_from</span><span class='comma'>,</span> <span class='id identifier rubyid_branch_position_to'>branch_position_to</span><span class='rparen'>)</span>
+  <span class='ivar'>@country_name</span>         <span class='op'>=</span> <span class='id identifier rubyid_country_name'>country_name</span>
+  <span class='ivar'>@a2_country_code</span>      <span class='op'>=</span> <span class='id identifier rubyid_a2_country_code'>a2_country_code</span>
+  <span class='ivar'>@iban_structure</span>       <span class='op'>=</span> <span class='id identifier rubyid_iban_structure'>iban_structure</span>
+  <span class='ivar'>@iban_length</span>          <span class='op'>=</span> <span class='id identifier rubyid_iban_length'>iban_length</span>
+  <span class='ivar'>@bban_structure</span>       <span class='op'>=</span> <span class='id identifier rubyid_bban_structure'>bban_structure</span>
+  <span class='ivar'>@bban_length</span>          <span class='op'>=</span> <span class='id identifier rubyid_bban_length'>bban_length</span>
+  <span class='ivar'>@bank_position_from</span>   <span class='op'>=</span> <span class='id identifier rubyid_bank_position_from'>bank_position_from</span>
+  <span class='ivar'>@bank_position_to</span>     <span class='op'>=</span> <span class='id identifier rubyid_bank_position_to'>bank_position_to</span>
+  <span class='ivar'>@branch_position_from</span> <span class='op'>=</span> <span class='id identifier rubyid_branch_position_from'>branch_position_from</span>
+  <span class='ivar'>@branch_position_to</span>   <span class='op'>=</span> <span class='id identifier rubyid_branch_position_to'>branch_position_to</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="a2_country_code-instance_method">
+  
+    - (<tt>Object</tt>) <strong>a2_country_code</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the value of attribute a2_country_code</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/specification.rb', line 72</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_a2_country_code'>a2_country_code</span>
+  <span class='ivar'>@a2_country_code</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="bank_position_from-instance_method">
+  
+    - (<tt>Object</tt>) <strong>bank_position_from</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the value of attribute bank_position_from</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/specification.rb', line 72</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bank_position_from'>bank_position_from</span>
+  <span class='ivar'>@bank_position_from</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="bank_position_to-instance_method">
+  
+    - (<tt>Object</tt>) <strong>bank_position_to</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the value of attribute bank_position_to</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/specification.rb', line 72</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bank_position_to'>bank_position_to</span>
+  <span class='ivar'>@bank_position_to</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="bban_length-instance_method">
+  
+    - (<tt>Object</tt>) <strong>bban_length</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the value of attribute bban_length</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/specification.rb', line 72</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bban_length'>bban_length</span>
+  <span class='ivar'>@bban_length</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="bban_structure-instance_method">
+  
+    - (<tt>Object</tt>) <strong>bban_structure</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the value of attribute bban_structure</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/specification.rb', line 72</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bban_structure'>bban_structure</span>
+  <span class='ivar'>@bban_structure</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="branch_position_from-instance_method">
+  
+    - (<tt>Object</tt>) <strong>branch_position_from</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the value of attribute branch_position_from</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/specification.rb', line 72</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_branch_position_from'>branch_position_from</span>
+  <span class='ivar'>@branch_position_from</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="branch_position_to-instance_method">
+  
+    - (<tt>Object</tt>) <strong>branch_position_to</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the value of attribute branch_position_to</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/specification.rb', line 72</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_branch_position_to'>branch_position_to</span>
+  <span class='ivar'>@branch_position_to</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="country_name-instance_method">
+  
+    - (<tt>Object</tt>) <strong>country_name</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the value of attribute country_name</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/specification.rb', line 72</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_country_name'>country_name</span>
+  <span class='ivar'>@country_name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="iban_length-instance_method">
+  
+    - (<tt>Object</tt>) <strong>iban_length</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the value of attribute iban_length</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/specification.rb', line 72</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_iban_length'>iban_length</span>
+  <span class='ivar'>@iban_length</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="iban_structure-instance_method">
+  
+    - (<tt>Object</tt>) <strong>iban_structure</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the value of attribute iban_structure</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/specification.rb', line 72</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_iban_structure'>iban_structure</span>
+  <span class='ivar'>@iban_structure</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="load_yaml-class_method">
+  
+    + (<tt>Hash&lt;String =&gt; <span class='object_link'><a href="" title="ISO::IBAN::Specification (class)">ISO::IBAN::Specification</a></span>&gt;</tt>) <strong>load_yaml</strong>(path) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Load the specifications YAML.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash&lt;String =&gt; <span class='object_link'><a href="" title="ISO::IBAN::Specification (class)">ISO::IBAN::Specification</a></span>&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/specification.rb', line 22</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_load_yaml'>load_yaml</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
+  <span class='const'>Hash</span><span class='lbracket'>[</span><span class='const'>YAML</span><span class='period'>.</span><span class='id identifier rubyid_load_file'>load_file</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_country'>country</span><span class='comma'>,</span> <span class='id identifier rubyid_spec'>spec</span><span class='op'>|</span> <span class='lbracket'>[</span><span class='id identifier rubyid_country'>country</span><span class='comma'>,</span> <span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_spec'>spec</span><span class='rparen'>)</span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse_file-class_method">
+  
+    + (<tt>Array&lt;<span class='object_link'><a href="" title="ISO::IBAN::Specification (class)">ISO::IBAN::Specification</a></span>&gt;</tt>) <strong>parse_file</strong>(path) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Parse the SWIFT provided file (which sadly is a mess).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="" title="ISO::IBAN::Specification (class)">ISO::IBAN::Specification</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>an array with all specifications.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/specification.rb', line 29</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse_file'>parse_file</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
+  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='label'>encoding:</span> <span class='const'>Encoding</span><span class='op'>::</span><span class='const'>Windows_1252</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_encode'>encode</span><span class='lparen'>(</span><span class='const'>Encoding</span><span class='op'>::</span><span class='const'>UTF_8</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\r\n</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_tap'>tap</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:shift</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_flat_map'>flat_map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='op'>|</span>
+    <span class='id identifier rubyid_country_name'>country_name</span><span class='comma'>,</span> <span class='id identifier rubyid_country_codes'>country_codes</span><span class='comma'>,</span> <span class='id identifier rubyid_iban_structure'>iban_structure</span><span class='comma'>,</span> <span class='id identifier rubyid_iban_length'>iban_length</span><span class='comma'>,</span> <span class='id identifier rubyid_bban_structure'>bban_structure</span><span class='comma'>,</span> <span class='id identifier rubyid_bban_length'>bban_length</span><span class='comma'>,</span> <span class='id identifier rubyid_bank_position'>bank_position</span> <span class='op'>=</span> <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\t</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_values_at'>values_at</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='int'>1</span><span class='comma'>,</span><span class='int'>11</span><span class='comma'>,</span><span class='int'>12</span><span class='comma'>,</span><span class='int'>4</span><span class='comma'>,</span><span class='int'>5</span><span class='comma'>,</span><span class='int'>6</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_codes'>codes</span> <span class='op'>=</span> <span class='id identifier rubyid_country_codes'>country_codes</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>2</span> <span class='op'>?</span> <span class='lbracket'>[</span><span class='id identifier rubyid_country_codes'>country_codes</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='id identifier rubyid_country_codes'>country_codes</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\b[A-Z]{2}\b</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_bank_position_from'>bank_position_from</span><span class='comma'>,</span> <span class='id identifier rubyid_bank_position_to'>bank_position_to</span><span class='comma'>,</span> <span class='id identifier rubyid_branch_position_from'>branch_position_from</span><span class='comma'>,</span> <span class='id identifier rubyid_branch_position_to'>branch_position_to</span> <span class='op'>=</span> <span class='id identifier rubyid_bank_position'>bank_position</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(?:[Pp]ositions?|) (\d+)-(\d+)(?:.*Branch identifier positions?: (\d+)-(\d+))?</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_captures'>captures</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_pos'>pos</span><span class='op'>|</span> <span class='id identifier rubyid_pos'>pos</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_pos'>pos</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='op'>+</span><span class='int'>3</span> <span class='rbrace'>}</span>
+
+    <span class='id identifier rubyid_codes'>codes</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_a2_country_code'>a2_country_code</span><span class='op'>|</span>
+      <span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+        <span class='id identifier rubyid_country_name'>country_name</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='comma'>,</span>
+        <span class='id identifier rubyid_a2_country_code'>a2_country_code</span><span class='comma'>,</span>
+        <span class='id identifier rubyid_iban_structure'>iban_structure</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='comma'>,</span>
+        <span class='id identifier rubyid_iban_length'>iban_length</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
+        <span class='id identifier rubyid_bban_structure'>bban_structure</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='comma'>,</span>
+        <span class='id identifier rubyid_bban_length'>bban_length</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span>
+        <span class='id identifier rubyid_bank_position_from'>bank_position_from</span><span class='comma'>,</span>
+        <span class='id identifier rubyid_bank_position_to'>bank_position_to</span><span class='comma'>,</span>
+        <span class='id identifier rubyid_branch_position_from'>branch_position_from</span><span class='comma'>,</span>
+        <span class='id identifier rubyid_branch_position_to'>branch_position_to</span>
+      <span class='rparen'>)</span>
+    <span class='rbrace'>}</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="structure_regex-class_method">
+  
+    + (<tt>Object</tt>) <strong>structure_regex</strong>(structure, anchored = true) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p><em>n:   Digits (numeric characters 0 to 9 only)
+</em>a:   Upper case letters (alphabetic characters A-Z only)
+<em>c:   upper and lower case alphanumeric characters (A-Z, a-z and 0-9)
+</em>e:   blank space
+<em>nn!: fixed length
+</em>nn:  maximum length</p>
+
+<p>Example: "AL2!n8!n16!c"</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/specification.rb', line 60</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_structure_regex'>structure_regex</span><span class='lparen'>(</span><span class='id identifier rubyid_structure'>structure</span><span class='comma'>,</span> <span class='id identifier rubyid_anchored'>anchored</span><span class='op'>=</span><span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_source'>source</span> <span class='op'>=</span> <span class='id identifier rubyid_structure'>structure</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>([A-Z]+)|(\d+)(!?)([nac])</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_exact'>exact</span><span class='comma'>,</span> <span class='id identifier rubyid_length'>length</span><span class='comma'>,</span> <span class='id identifier rubyid_fixed'>fixed</span><span class='comma'>,</span> <span class='id identifier rubyid_code'>code</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_exact'>exact</span>
+      <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_escape'>escape</span><span class='lparen'>(</span><span class='id identifier rubyid_exact'>exact</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='const'>StructureCodes</span><span class='lbracket'>[</span><span class='id identifier rubyid_code'>code</span><span class='rbracket'>]</span><span class='op'>+</span><span class='lparen'>(</span><span class='id identifier rubyid_fixed'>fixed</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>{</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_length'>length</span><span class='embexpr_end'>}</span><span class='tstring_content'>}</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>{,</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_length'>length</span><span class='embexpr_end'>}</span><span class='tstring_content'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_anchored'>anchored</span> <span class='op'>?</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source'>source</span><span class='embexpr_end'>}</span><span class='tstring_content'>\z</span><span class='regexp_end'>/</span></span> <span class='op'>:</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source'>source</span><span class='embexpr_end'>}</span><span class='regexp_end'>/</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="component_lengths-instance_method">
+  
+    - (<tt>Array&lt;Integer&gt;</tt>) <strong>component_lengths</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>An array with the lengths of all components.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Integer&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>An array with the lengths of all components.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+107
+108
+109</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/specification.rb', line 107</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_component_lengths'>component_lengths</span>
+  <span class='ivar'>@bban_structure</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\d+</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_i</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="iban_regex-instance_method">
+  
+    - (<tt>Regexp</tt>) <strong>iban_regex</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>A regex to verify the structure of the IBAN.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Regexp</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A regex to verify the structure of the IBAN.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+97
+98
+99</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/specification.rb', line 97</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_iban_regex'>iban_regex</span>
+  <span class='ivar'>@iban_regex</span> <span class='op'>||=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_structure_regex'>structure_regex</span><span class='lparen'>(</span><span class='ivar'>@iban_structure</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_a-instance_method">
+  
+    - (<tt>Array</tt>) <strong>to_a</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>An array with the Specification properties. Used for serialization.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>An array with the Specification properties. Used for serialization.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/specification.rb', line 112</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_a'>to_a</span>
+  <span class='lbracket'>[</span>
+    <span class='ivar'>@country_name</span><span class='comma'>,</span>
+    <span class='ivar'>@a2_country_code</span><span class='comma'>,</span>
+    <span class='ivar'>@iban_structure</span><span class='comma'>,</span>
+    <span class='ivar'>@iban_length</span><span class='comma'>,</span>
+    <span class='ivar'>@bban_structure</span><span class='comma'>,</span>
+    <span class='ivar'>@bban_length</span><span class='comma'>,</span>
+    <span class='ivar'>@bank_position_from</span><span class='comma'>,</span>
+    <span class='ivar'>@bank_position_to</span><span class='comma'>,</span>
+    <span class='ivar'>@branch_position_from</span><span class='comma'>,</span>
+    <span class='ivar'>@branch_position_to</span><span class='comma'>,</span>
+  <span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="unanchored_iban_regex-instance_method">
+  
+    - (<tt>Regexp</tt>) <strong>unanchored_iban_regex</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>A regex to identify the structure of the IBAN, without anchors.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Regexp</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A regex to identify the structure of the IBAN, without anchors.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+102
+103
+104</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/specification.rb', line 102</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_unanchored_iban_regex'>unanchored_iban_regex</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_structure_regex'>structure_regex</span><span class='lparen'>(</span><span class='ivar'>@iban_structure</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Sun Jul  7 20:37:43 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.6.2 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

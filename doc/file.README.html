@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.8.6.2
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>README</h1>
+
+<h2>Summary</h2>
+
+<p>ISO::IBAN implements IBAN (International Bank Account Number) specification as per ISO 13616-1.
+It provides methods to generate valid IBAN numbers from components, or to validate a given IBAN.</p>
+
+<h2>Installation</h2>
+
+<p><code>gem install iso-iban</code></p>
+
+<h2>Usage</h2>
+
+<pre class="code ruby"><code class="ruby"><span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CH35 1234 5987 6543 2109 A</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>     <span class='comment'># =&gt; true
+</span><span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CH37 1234 5987 6543 2109 A</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>   <span class='comment'># =&gt; [:invalid_checksum]
+</span><span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_generate'>generate</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CH</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>12345</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>987</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>           <span class='comment'># =&gt; #&lt;ISO::IBAN CH76 1234 5000 0000 0098 7&gt;
+</span><span class='id identifier rubyid_iban'>iban</span> <span class='op'>=</span> <span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CH35 1234 5987 6543 2109 A</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; #&lt;ISO::IBAN CH35 1234 5987 6543 2109 A&gt;
+</span><span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_formatted'>formatted</span>       <span class='comment'># =&gt; &quot;CH35 1234 5987 6543 2109 A&quot;
+</span><span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span>         <span class='comment'># =&gt; &quot;CH351234598765432109A&quot;
+</span><span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_country'>country</span>         <span class='comment'># =&gt; &quot;CH&quot;
+</span><span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_checksum_digits'>checksum_digits</span> <span class='comment'># =&gt; &quot;35&quot;
+</span><span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_bank_code'>bank_code</span>       <span class='comment'># =&gt; &quot;12345&quot;
+</span><span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_account_code'>account_code</span>    <span class='comment'># =&gt; &quot;98765432109A&quot;
+</span><span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span>          <span class='comment'># =&gt; true
+</span><span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span>        <span class='comment'># =&gt; []
+</span></code></pre>
+
+<h2>Links</h2>
+
+<ul>
+<li><a href="http://rdoc.info/github/apeiros/iso-iban/">Online API Documentation</a></li>
+<li><a href="https://github.com/apeiros/iso-iban">Public Repository</a></li>
+<li><a href="https://github.com/apeiros/iso-iban/issues">Bug Reporting</a></li>
+<li><a href="https://rubygems.org/gems/iso-iban">RubyGems Site</a></li>
+</ul>
+
+
+<h2>License</h2>
+
+<p>You can use this code under the <a href="file.LICENSE.html" title="BSD-2-Clause License">BSD-2-Clause License</a>, free of charge.
+If you need a different license, please ask the author.</p>
+</div></div>
+
+    <div id="footer">
+  Generated on Sun Jul  7 20:37:42 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.6.2 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>
