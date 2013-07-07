@@ -6,6 +6,7 @@ Gem::Specification.new do |s|
   s.authors                   = "Stefan Rusterholz"
   s.email                     = "stefan.rusterholz@gmail.com"
   s.homepage                  = "https://github.com/apeiros/iso-iban"
+  s.license                   = 'BSD 2-Clause'
 
   s.description               = <<-DESCRIPTION.gsub(/^    /, '').chomp
     ISO::IBAN implements IBAN (International Bank Account Number) specification as per ISO 13616-1.
@@ -17,6 +18,7 @@ Gem::Specification.new do |s|
 
   s.files                     =
     Dir['bin/**/*'] +
+    Dir['data/**/*'] +
     Dir['documentation/**/*'] +
     Dir['lib/**/*'] +
     Dir['rake/**/*'] +
