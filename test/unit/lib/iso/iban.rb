@@ -7,6 +7,11 @@ suite "ISO::IBAN" do
     ISO::IBAN.instance_variable_set(:@specifications, {'CH' => ISO::IBAN::Specification.new("Switzerland", "CH", "CH2!n5!n12!c", 21, "5!n12!c", 17, 4, 8, nil, nil)})
   end
 
+  test 'ISO::IBAN::generate problem, TODO' do
+    ISO::IBAN.instance_variable_set(:@specifications, {'BG' => ISO::IBAN::Specification.new("Bulgaria", "BG", "BG2!n4!a4!n2!n8!c", 22, "4!a4!n2!n8!c", 18, 4, 7, 8, 11)})
+    assert ISO::IBAN.generate('BG', '1', '2', '3', 'C').valid?
+  end
+
   test 'ISO::IBAN::load_specifications' do
     reset_test_files
 
