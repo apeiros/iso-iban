@@ -37,7 +37,7 @@ module ISO
   #   Bank identifier: The identifier that uniquely identifies the financial
   #   institution and, when appropriate, the branch of that financial institution
   #   servicing an account
-  #   
+  #
   #   `In this registry, the branch identifier format is shown specifically, when
   #   present.`
   #
@@ -84,11 +84,17 @@ module ISO
       elsif ENV['IBAN_SPECIFICATIONS'] then
         spec_file = ENV['IBAN_SPECIFICATIONS']
       else
-        spec_file = File.expand_path('../../../../data/iso-iban/specs.yaml', __FILE__)
-        spec_file = Gem.datadir('iso-iban')+'/specs.yaml' if defined?(Gem) && !File.file?(spec_file)
+        spec_file = File.expand_path('../../../data/iso-iban/specs.yaml', __FILE__)
+        if !File.file?(spec_file) && defined?(Gem) && Gem.datadir('iso-iban')
+          spec_file = Gem.datadir('iso-iban')+'/specs.yaml'
+        end
       end
 
-      @specifications = ISO::IBAN::Specification.load_yaml(spec_file)
+      if spec_file && File.file?(spec_file)
+        @specifications = ISO::IBAN::Specification.load_yaml(spec_file)
+      else
+        raise "Could not load IBAN specifications, no specs file found."
+      end
 
       self
     end
