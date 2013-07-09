@@ -105,7 +105,25 @@ module ISO
 
       # @return [Array<Integer>] An array with the lengths of all components.
       def component_lengths
-        @bban_structure.scan(/\d+/).map(&:to_i)
+        [bank_code_length, branch_code_length, account_code_lenght].tap { |lengths| lengths.delete(0) }
+      end
+
+      # @return [Fixnum]
+      #   The length of the bank code in the IBAN, 0 if the IBAN has no bank code.
+      def bank_code_length
+        @bank_position_from && @bank_position_to ? @bank_position_to-@bank_position_from+1 : 0
+      end
+
+      # @return [Fixnum]
+      #   The length of the bank code in the IBAN, 0 if the IBAN has no branch code.
+      def branch_code_length
+        @branch_position_from && @branch_position_to ? @branch_position_to-@branch_position_from+1 : 0
+      end
+
+      # @return [Fixnum]
+      #   The length of the account code in the IBAN.
+      def account_code_lenght
+        bban_length-bank_code_length-branch_code_length
       end
 
       # @return [Array] An array with the Specification properties. Used for serialization.
