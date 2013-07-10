@@ -61,6 +61,18 @@ module ISO
     # (digits-only) form
     CharacterCodes  = Hash[('0'..'9').zip('0'..'9')+('a'..'z').zip(10..35)+('A'..'Z').zip(10..35)]
 
+    # All uppercase letters
+    UpperAlpha   = [*'A'..'Z']
+
+    # All lowercase letters
+    LowerAlpha   = [*'a'..'z']
+
+    # All digits
+    Digits       = [*'0'..'9']
+
+    # All uppercase letters, lowercase letters and digits
+    AlphaNumeric = [*'A'..'Z', *'a'..'z', *'0'..'9']
+
     # All specifications, see ISO::IBAN::Specification
     @specifications = nil
 
@@ -155,6 +167,34 @@ module ISO
       spec      = specification(country)
       justified = spec.component_lengths.zip(components).map { |length, component| component.rjust(length, "0") }
       iban      = new(country+'??'+justified.join(''))
+      iban.update_checksum!
+
+      iban
+    end
+
+    # @param [String] countries
+    #   A list of 2 letter country codes. If empty, all countries in
+    #   ISO::IBAN::specifications are used.
+    #
+    # @return [ISO::IBAN] A random, valid IBAN
+    def self.random(*countries)
+      countries = specifications.keys if countries.empty?
+      country   = countries.sample
+      account   = specification(country).iban_structure.scan(/([A-Z]+)|(\d+)(!?)([nac])/).map { |exact, length, fixed, code|
+        if exact
+          exact
+        elsif code == 'a'
+          Array.new(length.to_i) { UpperAlpha.sample }.join('')
+        elsif code == 'c'
+          Array.new(length.to_i) { AlphaNumeric.sample }.join('')
+        elsif code == 'e'
+          ' '*length.to_i
+        elsif code == 'n'
+          Array.new(length.to_i) { Digits.sample }.join('')
+        end
+      }.join('')
+      account[2,2] = '??'
+      iban = new(account)
       iban.update_checksum!
 
       iban
