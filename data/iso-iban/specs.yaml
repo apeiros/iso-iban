@@ -49,7 +49,7 @@ BH:
 - BH2!n4!a14!c
 - 22
 - 4!a14!c
-- 22
+- 18
 - 4
 - 7
 - 
@@ -104,7 +104,7 @@ CR:
 - CR2!n3!n14!n
 - 21
 - 3!n14!n
-- 7
+- 17
 - 4
 - 6
 - 
@@ -145,7 +145,7 @@ CZ:
 DK:
 - Denmark
 - DK
-- DK2!n4!n9!n1!n, FO2!n4!n9!n1!n, GL2!n4!n9!n1!n
+- DK2!n4!n9!n1!n
 - 18
 - 4!n9!n1!n
 - 14
@@ -156,7 +156,7 @@ DK:
 FO:
 - Denmark
 - FO
-- DK2!n4!n9!n1!n, FO2!n4!n9!n1!n, GL2!n4!n9!n1!n
+- FO2!n4!n9!n1!n
 - 18
 - 4!n9!n1!n
 - 14
@@ -167,7 +167,7 @@ FO:
 GL:
 - Denmark
 - GL
-- DK2!n4!n9!n1!n, FO2!n4!n9!n1!n, GL2!n4!n9!n1!n
+- GL2!n4!n9!n1!n
 - 18
 - 4!n9!n1!n
 - 14
@@ -202,8 +202,8 @@ FI:
 - FI
 - FI2!n6!n7!n1!n
 - 18
-- Not in use
-- 0
+- 6!n7!n1!n
+- 14
 - 4
 - 6
 - 
@@ -367,7 +367,7 @@ DE:
 - DE
 - DE2!n8!n10!n
 - 22
-- 8!n10!n;
+- 8!n10!n
 - 18
 - 4
 - 11
@@ -376,7 +376,7 @@ DE:
 GI:
 - Gibraltar
 - GI
-- 'GI2!n4!a15!c:'
+- GI2!n4!a15!c
 - 23
 - 4!a15!c
 - 19
@@ -411,7 +411,7 @@ HU:
 - HU
 - HU2!n3!n4!n1!n15!n1!n
 - 28
-- '3!n4!n1!n15!n1!n:'
+- 3!n4!n1!n15!n1!n
 - 24
 - 4
 - 6
@@ -464,7 +464,7 @@ IT:
 KW:
 - Kuwait
 - KW
-- KW2!n4!a22!
+- KW2!n4!a22!c
 - 30
 - 4!a22!c
 - 26
@@ -475,9 +475,8 @@ KW:
 KZ:
 - Kazakhstan
 - KZ
-- 2!a2!n3!n13!c 1,2 characters – country code (KZ) 3,4 characters – IBAN check digits
-  5,7 characters – bank identifier  8-20 characters – intrabank account number
-- 0
+- KZ2!n3!n13!c
+- 20
 - 3!n13!c
 - 16
 - 4
@@ -512,7 +511,7 @@ LI:
 - LI2!n5!n12!c
 - 21
 - 5!n12!c
-- 19
+- 17
 - 4
 - 8
 - 
@@ -564,7 +563,7 @@ MT:
 MR:
 - Mauritania
 - MR
-- MR135!n5!n11!n2!n
+- MR2!n5!n5!n11!n2!n
 - 27
 - 5!n5!n11!n2!n
 - 23
@@ -586,7 +585,7 @@ MU:
 MD:
 - Republic of Moldova
 - MD
-- MD2!n20!c
+- MD2!n2!c18!c
 - 24
 - 2!c18!c
 - 20
@@ -663,7 +662,7 @@ PS:
 PL:
 - Poland
 - PL
-- PL2!n8!n16n
+- PL2!n8!n16!n
 - 28
 - 8!n16!n
 - 24
@@ -784,7 +783,7 @@ CH:
 TN:
 - Tunisia
 - TN
-- TN592!n3!n13!n2!n
+- TN2!n2!n3!n13!n2!n
 - 24
 - 2!n3!n13!n2!n
 - 20
@@ -806,7 +805,7 @@ TR:
 AE:
 - United Arab Emirates
 - AE
-- AE07 0331 2345 6789 0123 456
+- AE2!n3!n16!n
 - 23
 - 3!n16!n
 - 19
