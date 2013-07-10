@@ -23,20 +23,24 @@ module ISO
         Hash[YAML.load_file(path).map { |country, spec| [country, new(*spec)] }]
       end
 
-      # Parse the SWIFT provided file (which sadly is a mess).
+      # Parse the SWIFT provided file (which sadly is a huge mess and not machine friendly at all).
       #
       # @return [Array<ISO::IBAN::Specification>] an array with all specifications.
       def self.parse_file(path)
         File.read(path, encoding: Encoding::Windows_1252).encode(Encoding::UTF_8).split("\r\n").tap(&:shift).flat_map { |line|
-          country_name, country_codes, iban_structure, iban_length, bban_structure, bban_length, bank_position = line.split(/\t/).values_at(0,1,11,12,4,5,6)
-          codes = country_codes.size == 2 ? [country_codes] : country_codes.scan(/\b[A-Z]{2}\b/)
+          country_name, country_codes, iban_structure_raw, iban_length, bban_structure, bban_length, bank_position = line.split(/\t/).values_at(0,1,11,12,4,5,6)
+          codes        = country_codes.size == 2 ? [country_codes] : country_codes.scan(/\b[A-Z]{2}\b/)
+          primary_code = codes.first
           bank_position_from, bank_position_to, branch_position_from, branch_position_to = bank_position.match(/(?:[Pp]ositions?|) (\d+)-(\d+)(?:.*Branch identifier positions?: (\d+)-(\d+))?/).captures.map { |pos| pos && pos.to_i+3 }
 
           codes.map { |a2_country_code|
+            iban_structure = iban_structure_raw[/#{a2_country_code}[acen\!\d]*/] || iban_structure_raw[/#{primary_code}[acen\!\d]*/]
+            bban_structure = bban_structure[/[acen\!\d]*/]
+
             new(
               country_name.strip,
               a2_country_code,
-              iban_structure.strip,
+              iban_structure,
               iban_length.to_i,
               bban_structure.strip,
               bban_length.to_i,

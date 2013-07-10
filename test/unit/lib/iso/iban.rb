@@ -7,6 +7,27 @@ suite "ISO::IBAN" do
     ISO::IBAN.instance_variable_set(:@specifications, {'CH' => ISO::IBAN::Specification.new("Switzerland", "CH", "CH2!n5!n12!c", 21, "5!n12!c", 17, 4, 8, nil, nil)})
   end
 
+  # since the specs provided by swift are a mess, we do a sanity check
+  test 'Specifications provided by SWIFT' do
+    ISO::IBAN.load_specifications
+    ISO::IBAN.specifications.each do |country, spec|
+      structure_length = spec.iban_structure.scan(/([A-Z]+)|(\d+)(!?)([nac])/).map { |exact, length, fixed, code|
+        exact ? exact.length : length.to_i
+      }.inject(:+)
+
+      assert_equal spec.iban_length, structure_length, "Spec for country #{country} is invalid, invalid length"
+      assert_equal spec.bban_structure, spec.iban_structure[5..-1], "Spec for country #{country} is invalid, iban differs from country + 2!n + bban"
+      assert_equal spec.bban_length, spec.iban_length-4, "Spec for country #{country} is invalid, iban length differs from bban length + 4"
+    end
+  end
+
+  test 'Random IBAN generation' do
+    ISO::IBAN.load_specifications
+    ISO::IBAN.specifications.each do |country, spec|
+      assert ISO::IBAN.random(country).valid?, "Random IBAN generator for country #{country} is invalid"
+    end
+  end
+
   test 'ISO::IBAN::generate problem, TODO' do
     ISO::IBAN.instance_variable_set(:@specifications, {'BG' => ISO::IBAN::Specification.new("Bulgaria", "BG", "BG2!n4!a4!n2!n8!c", 22, "4!a4!n2!n8!c", 18, 4, 7, 8, 11)})
     assert ISO::IBAN.generate('BG', 'AAAA', '2', 'C').valid? # this works now
