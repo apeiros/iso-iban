@@ -2,6 +2,7 @@
 
 require 'iso/iban/specification'
 require 'iso/iban/version'
+require 'yaml'
 
 module ISO
 
