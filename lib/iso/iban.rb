@@ -248,7 +248,7 @@ module ISO
     #   IBAN in its numeric form, i.e. all characters a-z are replaced with their corresponding
     #   digit sequences.
     def numeric
-      self.class.numerify(@compact[4..-1]+@compact[0,4])
+      @compact.size < 5 ? nil : self.class.numerify(@compact[4..-1]+@compact[0,4])
     end
 
     # @return [true, false]
@@ -331,7 +331,9 @@ module ISO
 
     # @return [true, false] Whether the checksum of the IBAN is valid.
     def valid_checksum?
-      numeric % 97 == 1
+      numerified = numeric()
+
+      numerified && (numerified % 97 == 1)
     end
 
     # See Object#<=>
