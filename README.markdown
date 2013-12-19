@@ -28,6 +28,7 @@ Usage
     iban.account_code    # => "98765432109A"
     iban.valid?          # => true
     iban.validate        # => []
+    iban.to_a            # => ["CH", "35", "12345", "98765432109A"]
 
 Links
 -----
