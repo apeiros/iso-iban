@@ -369,5 +369,11 @@ module ISO
     def to_s
       @compact.dup
     end
+
+    # @return [Array] Iban splitted by component
+    def to_a
+      @components ||= @specification ? @compact.scan(@specification.iban_regex(true)).flatten : []
+      @components.dup
+    end
   end
 end

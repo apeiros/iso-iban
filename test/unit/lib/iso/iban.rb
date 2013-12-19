@@ -132,14 +132,19 @@ suite "ISO::IBAN" do
   test "ISO::IBAN#<=>" do
     iban0 = ISO::IBAN.generate('CH', '0', '0')
     iban1 = ISO::IBAN.generate('CH', '0', '97') # 97 to have the same checksum
-    assert_equal  -1, iban0 <=> iban1
-    assert_equal   0, iban0 <=> iban0
-    assert_equal   1, iban1 <=> iban0
-    assert_equal nil, iban0 <=> "incomparable"
-    assert_equal nil, "incomparable" <=> iban0
+    # Linter complains about ambiguos expression
+    assert_equal(  -1, iban0 <=> iban1          )
+    assert_equal(   0, iban0 <=> iban0          )
+    assert_equal(   1, iban1 <=> iban0          )
+    assert_equal( nil, iban0 <=> "incomparable" )
+    assert_equal( nil, "incomparable" <=> iban0 )
   end
 
   test "ISO::IBAN#inspect" do
     assert_equal "#<ISO::IBAN CH35 1234 5987 6543 2109 A>", ISO::IBAN.new('CH35 1234 5987 6543 2109 A').inspect
+  end
+
+  test "ISO::IBAN#to_a" do
+    assert_equal "CH 35 12345 98765432109A", ISO::IBAN.new("CH351234598765432109A").to_a * " "
   end
 end

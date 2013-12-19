@@ -61,12 +61,17 @@ module ISO
       # *nn:  maximum length
       #
       # Example: "AL2!n8!n16!c"
-      def self.structure_regex(structure, anchored=true)
+      def self.structure_regex(structure, anchored=true, grouped = false)
+        left_char = right_char = ''
+        if grouped
+          left_char = '('
+          right_char = ')'
+        end
         source = structure.scan(/([A-Z]+)|(\d+)(!?)([nac])/).map { |exact, length, fixed, code|
           if exact
-            Regexp.escape(exact)
+            left_char + Regexp.escape(exact) + right_char
           else
-            StructureCodes[code]+(fixed ? "{#{length}}" : "{,#{length}}")
+            left_char + StructureCodes[code]+(fixed ? "{#{length}}" : "{,#{length}}") + right_char
           end
         }.join('')
 
@@ -97,14 +102,36 @@ module ISO
         @branch_position_to   = branch_position_to
       end
 
-      # @return [Regexp] A regex to verify the structure of the IBAN.
-      def iban_regex
-        @iban_regex ||= self.class.structure_regex(@iban_structure)
+      # @param [Boolean] grouped
+      #   If true will build a regex with every component grouped. (ie. (IT)(\d{2})([A-Z]{1}))... )
+      #
+      # @return [Regexp] A regex to verify the structure of the IBAN. If grouped = true resulting regex will have components grouped.
+      def iban_regex(grouped = false)
+        @iban_regex ||= self.class.structure_regex(@iban_structure, true, grouped)
       end
 
+      # @param [Boolean] grouped
+      #   If true will build a regex with every component grouped. (ie. (IT)(\d{2})([A-Z]{1}))... )
+      #
+      # @return [Regexp] A regex to identify the structure of the IBAN, without anchors. If grouped = true resulting regex will have components grouped.
+      def unanchored_iban_regex(grouped = false)
+        self.class.structure_regex(@iban_structure, false, grouped)
+      end
+
+      # @param [Boolean] grouped
+      #   If true resulting regex will have components grouped
+      #
+      # @return [Regexp] A regex to verify the structure of the IBAN.
+      def iban_regex(grouped = false)
+        @iban_regex ||= self.class.structure_regex(@iban_structure, true, grouped)
+      end
+
+      # @param [Boolean] grouped
+      #   If true resulting regex will have components grouped
+      #
       # @return [Regexp] A regex to identify the structure of the IBAN, without anchors.
-      def unanchored_iban_regex
-        self.class.structure_regex(@iban_structure, false)
+      def unanchored_iban_regex(grouped = false)
+        self.class.structure_regex(@iban_structure, false, grouped)
       end
 
       # @return [Array<Integer>] An array with the lengths of all components.
