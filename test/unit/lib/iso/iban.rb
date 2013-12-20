@@ -132,11 +132,11 @@ suite "ISO::IBAN" do
   test "ISO::IBAN#<=>" do
     iban0 = ISO::IBAN.generate('CH', '0', '0')
     iban1 = ISO::IBAN.generate('CH', '0', '97') # 97 to have the same checksum
-    assert_equal  -1, iban0 <=> iban1
-    assert_equal   0, iban0 <=> iban0
-    assert_equal   1, iban1 <=> iban0
-    assert_equal nil, iban0 <=> "incomparable"
-    assert_equal nil, "incomparable" <=> iban0
+    assert_equal( -1, iban0 <=> iban1         )
+    assert_equal(  0, iban0 <=> iban0         )
+    assert_equal(  1, iban1 <=> iban0         )
+    assert_equal(nil, iban0 <=> "incomparable")
+    assert_equal(nil, "incomparable" <=> iban0)
   end
 
   test "ISO::IBAN#inspect" do
