@@ -68,9 +68,9 @@ module ISO
           else
             StructureCodes[code]+(fixed ? "{#{length}}" : "{,#{length}}")
           end
-        }.join('')
+        }.join(')(')
 
-        anchored ? /\A#{source}\z/ : /#{source}/
+        anchored ? /\A(#{source})\z/ : /(#{source})/
       end
 
       attr_reader :country_name,
