@@ -28,7 +28,7 @@ suite "ISO::IBAN" do
     end
   end
 
-  test 'ISO::IBAN::generate problem, TODO' do
+  test 'ISO::IBAN::generate problem, TODO (this test is expected to fail at the moment)' do
     ISO::IBAN.instance_variable_set(:@specifications, {'BG' => ISO::IBAN::Specification.new("Bulgaria", "BG", "BG2!n4!a4!n2!n8!c", 22, "4!a4!n2!n8!c", 18, 4, 7, 8, 11)})
     assert ISO::IBAN.generate('BG', 'AAAA', '2', 'C').valid? # this works now
     assert ISO::IBAN.generate('BG', 'A', '2', 'C').valid? # this still fails, because ISO::IBAN::generate can't pad 'a' format fields
