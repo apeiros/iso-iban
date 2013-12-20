@@ -255,7 +255,7 @@ module ISO
     #   Whether the IBAN is valid.
     #   See {#validate} for details.
     def valid?
-      validate.empty?
+      valid_country? && valid_checksum? && valid_length? && valid_format?
     end
 
     # Validation error codes:
