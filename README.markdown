@@ -16,6 +16,7 @@ Installation
 Usage
 -----
 
+    require 'iso/iban'
     ISO::IBAN.valid?('CH35 1234 5987 6543 2109 A')     # => true
     ISO::IBAN.validate('CH37 1234 5987 6543 2109 A')   # => [:invalid_checksum]
     ISO::IBAN.generate('CH', '12345', '987')           # => #<ISO::IBAN CH76 1234 5000 0000 0098 7>
@@ -28,6 +29,9 @@ Usage
     iban.account_code    # => "98765432109A"
     iban.valid?          # => true
     iban.validate        # => []
+
+Note: iso/iban automatically loads the IBAN specifications delivered with the gem. If you do not wish
+those to be loaded, `require 'iso/iban/no_autoload'` instead.
 
 Links
 -----

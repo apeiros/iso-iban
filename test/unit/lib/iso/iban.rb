@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require 'iso/iban'
+require 'iso/iban/no_autoload'
 
 suite "ISO::IBAN" do
   setup do

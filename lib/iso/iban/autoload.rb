@@ -1,5 +1,3 @@
 # This file automatically loads all specifications. It's recommended that you require this file instead of iso/iban.
 
-require 'iso/iban'
-
-ISO::IBAN.load_specifications
+raise "Deprecated - use just `require 'iso/iban'` - use `require 'iso/iban/no_autoload'` to suppress autoloading."
