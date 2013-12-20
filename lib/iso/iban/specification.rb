@@ -99,7 +99,7 @@ module ISO
 
       # @return [Regexp] A regex to verify the structure of the IBAN.
       def iban_regex
-        @iban_regex ||= self.class.structure_regex(@iban_structure)
+        @_iban_regex ||= self.class.structure_regex(@iban_structure)
       end
 
       # @return [Regexp] A regex to identify the structure of the IBAN, without anchors.
