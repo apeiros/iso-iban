@@ -139,6 +139,11 @@ suite "ISO::IBAN" do
     assert_equal(nil, "incomparable" <=> iban0)
   end
 
+  test "ISO::IBAN#to_a" do
+    assert_equal %w[CH 35 12345 98765432109A], ISO::IBAN.new("CH351234598765432109A").to_a
+    assert_equal [], ISO::IBAN.new("XX351234598765432109A").to_a # no specification
+  end
+
   test "ISO::IBAN#inspect" do
     assert_equal "#<ISO::IBAN CH35 1234 5987 6543 2109 A>", ISO::IBAN.new('CH35 1234 5987 6543 2109 A').inspect
   end

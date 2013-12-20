@@ -369,5 +369,14 @@ module ISO
     def to_s
       @compact.dup
     end
+
+    # @return [Array]
+    #   The individual IBAN components as defined by the SWIFT specification.
+    #   An empty array if this IBAN does not have a specification.
+    def to_a
+      @_components ||= @specification ? @compact.match(@specification.iban_regex).captures : []
+
+      @_components.dup
+    end
   end
 end
