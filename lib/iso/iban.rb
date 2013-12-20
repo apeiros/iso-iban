@@ -321,12 +321,12 @@ module ISO
 
     # @return [true, false] Whether the format of the IBAN is valid.
     def valid_format?
-      specification && specification.iban_regex =~ @compact ? true : false
+      @specification && @specification.iban_regex =~ @compact ? true : false
     end
 
     # @return [true, false] Whether the length of the IBAN is valid.
     def valid_length?
-      specification && @compact.size == specification.iban_length ? true : false
+      @specification && @compact.size == @specification.iban_length ? true : false
     end
 
     # @return [true, false] Whether the checksum of the IBAN is valid.
