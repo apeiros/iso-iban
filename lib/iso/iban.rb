@@ -360,6 +360,19 @@ module ISO
       "%02d" % (98-(self.class.numerify(bban+@country)*100)%97)
     end
 
+    # @return [true, false]
+    #   Whether two ISO::IBANs are equal.
+    #   Comparison is based on class and IBAN number
+    def eql?(other)
+      self.class.equal?(other.class) && self == other
+    end
+
+    # @return [Integer]
+    #   A hash value, see Object#hash
+    def hash
+      [self.class, @compact].hash
+    end
+
     # See Object#inspect
     def inspect
       sprintf "#<%p %s>", self.class, formatted
