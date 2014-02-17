@@ -159,7 +159,7 @@ module ISO
     #   The IBAN in either compact or human readable form.
     #
     # @return [String]
-    #   The IBAN in compact form, all whitespace stripped.
+    #   The IBAN in compact form, all whitespace and dashes stripped.
     def self.strip(iban)
       iban.delete("\n\r\t -")
     end
@@ -247,10 +247,10 @@ module ISO
       }.to_i
     end
 
-    # @return [String] The standard form of the IBAN for machine communication, without spaces.
+    # @return [String] The standard form of the IBAN for machine communication, without spaces, encoded in Encoding::BINARY.
     attr_reader :compact
 
-    # @return [String] The ISO-3166 2-letter country code.
+    # @return [String] The ISO-3166 2-letter country code (first and second character).
     attr_reader :country
 
     # @return [ISO::IBAN::Specification] The specification for this IBAN (determined by its country).
@@ -289,15 +289,23 @@ module ISO
       valid_country? && valid_checksum? && valid_length? && valid_format?
     end
 
+    # @note
+    #   {ISO::IBAN::validate} uses {ISO::IBAN::parse}, which means it will strip whitespace and
+    #   dashes from the IBAN.
+    #   {ISO::IBAN::new} on the other hand expects the IBAN in compact format and will not strip
+    #   those characters.
+    #
     # Validation error codes:
     #
+    # * :invalid_characters
     # * :invalid_country
     # * :invalid_checksum
     # * :invalid_length
     # * :invalid_format
     #
-    # Invalid country means the country is unknown (char 1 & 2 in the IBAN).
-    # Invalid checksum means the two check digits (char 3 & 4 in the IBAN).
+    # Invalid characters means that the IBAN contains characters which are not in the set of A-Za-z0-9. See {#invalid_characters}
+    # Invalid country means the country is unknown (character 1 & 2 in the IBAN).
+    # Invalid checksum means the two check digits (character 3 & 4 in the IBAN).
     # Invalid length means the IBAN does not comply with the length specified for the country of that IBAN.
     # Invalid format means the IBAN does not comply with the format specified for the country of that IBAN.
     #
@@ -313,12 +321,12 @@ module ISO
       errors
     end
 
-    # @return [String] The checksum digits in the IBAN.
+    # @return [String] The checksum digits in the IBAN (character 3 & 4).
     def checksum_digits
       @compact[2,2]
     end
 
-    # @return [String] The BBAN of the IBAN.
+    # @return [String] The BBAN of the IBAN (everything except the country code and check digits).
     def bban
       @compact[4..-1]
     end
@@ -364,6 +372,7 @@ module ISO
       iban.gsub(/[A-Z0-9?]*/i, '').chars.uniq
     end
 
+    # @return [true, false] Whether IBAN consists only of valid characters.
     def valid_characters?
       @compact =~ /\A[A-Z]{2}(?:\d\d|\?\?)[A-Z0-9]*\z/in ? true : false
     end
@@ -437,6 +446,9 @@ module ISO
       @compact.dup
     end
 
+    # @note
+    #   This method is experimental. It might change or be removed in future versions!
+    #
     # @return [Array]
     #   The individual IBAN components as defined by the SWIFT specification.
     #   An empty array if this IBAN does not have a specification.
