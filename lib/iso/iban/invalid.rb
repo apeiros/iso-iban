@@ -13,6 +13,8 @@ module ISO
       # @return [ISO::IBAN] The faulty IBAN.
       attr_reader :iban
 
+      # @param [ISO::IBAN] iban
+      #    The faulty IBAN.
       def initialize(iban)
         super("The IBAN #{iban.formatted} is invalid (#{@errors.join(', ')})")
         @iban   = iban
