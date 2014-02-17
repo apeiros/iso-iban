@@ -4,13 +4,25 @@ README
 
 Summary
 -------
+
 ISO::IBAN implements IBAN (International Bank Account Number) specification as per ISO 13616-1.
 It provides methods to generate valid IBAN numbers from components, or to validate a given IBAN.
 
 
 Installation
 ------------
-`gem install iso-iban`
+
+### Via rubygems
+
+    gem install iso-iban
+
+### From github
+
+    git clone https://github.com/apeiros/iso-iban.git
+    cd iso-iban
+    rm -r *.gem
+    gem build *.gemspec
+    gem install *.gem
 
 
 Usage
