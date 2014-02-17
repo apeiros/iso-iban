@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # This file used automatically load all specifications.
 # Now this is the default behavior of require 'iso/iban', and this file only
 # exists to inform about the move.
