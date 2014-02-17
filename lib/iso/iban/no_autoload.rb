@@ -260,15 +260,8 @@ module ISO
     #   The IBAN number, must be in compact form. Use ISO::IBAN::parse for formatted IBANs.
     def initialize(iban)
       raise ArgumentError, "String expected for iban, but got #{iban.class}" unless iban.is_a?(String)
-      if iban =~ /[^A-Za-z0-9?]/m
-        if iban =~ /[^A-Za-z0-9 -?]/m
-          raise ArgumentError, "IBAN #{iban.inspect} contains the following invalid characters: #{iban.delete('A-Za-z0-9').chars.uniq.sort.join.inspect} - IBAN must only consist of A-Z, a-z and 0-9."
-        else
-          raise ArgumentError, "Use ISO::IBAN.parse/.parse! for formatted IBANs. IBAN #{iban.inspect} contains the following invalid characters: #{iban.delete('A-Za-z0-9').chars.uniq.sort.join.inspect} - IBAN must only consist of A-Z, a-z and 0-9."
-        end
-      end
 
-      @compact       = iban.dup
+      @compact       = iban.b
       @country       = iban[0,2]
       @specification = self.class.specification(@country, nil)
     end
@@ -311,10 +304,11 @@ module ISO
     # @return [Array<Symbol>] An array with a code of all validation errors, empty if valid.
     def validate
       errors   = []
-      errors << :invalid_country  unless valid_country?
-      errors << :invalid_checksum unless valid_checksum?
-      errors << :invalid_length   unless valid_length?
-      errors << :invalid_format   unless valid_format?
+      errors << :invalid_characters unless valid_characters?
+      errors << :invalid_country    unless valid_country?
+      errors << :invalid_checksum   unless valid_characters? && valid_checksum?
+      errors << :invalid_length     unless valid_length?
+      errors << :invalid_format     unless valid_format?
 
       errors
     end
@@ -350,6 +344,28 @@ module ISO
     # @return [String] The account code part of the IBAN.
     def account_code
       @compact[((@specification.branch_position_to || @specification.bank_position_to || 3)+1)..-1]
+    end
+
+    # @example
+    #     invalid = "hägar"
+    #     invalid.encoding # => #<Encoding:UTF-8>
+    #     ISO::IBAN.new(invalid).invalid_characters          # => ["\xC3", "\xA4"]
+    #     ISO::IBAN.new(invalid).invalid_characters('utf-8') # => ["ä"]
+    #
+    # @param [String, Encoding, nil] input_encoding
+    #   ISO::IBAN::new interprets the passed IBAN as binary.
+    #   If you got the IBAN from a source which is not binary, you should provide that encoding.
+    #   Otherwise an invalid character may be split into multiple bytes.
+    #
+    # @return [Array] An Array with all invalid characters.
+    def invalid_characters(input_encoding=nil)
+      iban = input_encoding ? @compact.dup.force_encoding(input_encoding) : @compact
+
+      iban.gsub(/[A-Z0-9?]*/i, '').chars.uniq
+    end
+
+    def valid_characters?
+      @compact =~ /\A[A-Z]{2}(?:\d\d|\?\?)[A-Z0-9]*\z/in ? true : false
     end
 
     # @return [true, false] Whether the country of the IBAN is valid.

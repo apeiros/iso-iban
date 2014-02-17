@@ -70,7 +70,7 @@ module ISO
           end
         }.join(')(')
 
-        anchored ? /\A(#{source})\z/ : /(#{source})/
+        anchored ? /\A(#{source})\z/ : /(#{source})/n
       end
 
       attr_reader :country_name,
