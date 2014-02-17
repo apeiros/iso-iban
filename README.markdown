@@ -29,10 +29,11 @@ Usage
 -----
 
     require 'iso/iban'
-    ISO::IBAN.valid?('CH35 1234 5987 6543 2109 A')     # => true
-    ISO::IBAN.validate('CH37 1234 5987 6543 2109 A')   # => [:invalid_checksum]
-    ISO::IBAN.generate('CH', '12345', '987')           # => #<ISO::IBAN CH76 1234 5000 0000 0098 7>
-    iban = ISO::IBAN.new('CH35 1234 5987 6543 2109 A') # => #<ISO::IBAN CH35 1234 5987 6543 2109 A>
+    ISO::IBAN.valid?('CH35 1234 5987 6543 2109 A')       # => true
+    ISO::IBAN.validate('CH37 1234 5987 6543 2109 A')     # => [:invalid_checksum]
+    ISO::IBAN.generate('CH', '12345', '987')             # => #<ISO::IBAN CH76 1234 5000 0000 0098 7>
+    iban = ISO::IBAN.parse('CH35 1234 5987 6543 2109 A') # => #<ISO::IBAN CH35 1234 5987 6543 2109 A>
+    iban = ISO::IBAN.new('CH351234598765432109A')        # => #<ISO::IBAN CH35 1234 5987 6543 2109 A>
     iban.formatted       # => "CH35 1234 5987 6543 2109 A"
     iban.compact         # => "CH351234598765432109A"
     iban.country         # => "CH"
