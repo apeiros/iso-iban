@@ -16,6 +16,18 @@ Gem::Specification.new do |s|
     Utilities for International Bank Account Numbers (IBAN) as per ISO 13616-1.
   SUMMARY
 
+  s.post_install_message      = <<-POST_INSTALL_MESSAGE.gsub(/^    /, '').chomp
+    IMPORTANT!
+
+    As of 0.1.0, there are 2 backward incompatible changes:
+
+    * `require 'iso/iban/autoload'` is deprecated. Please use plain `require 'iso/iban'`.
+      To load ISO::IBAN without loading the specifications, please use
+      `require 'iso/iban/no_autoload'`.
+    * ISO::IBAN.new no longer accepts formatted input.
+      Use ISO::IBAN.parse if your input is potentially not in the compact format.
+  POST_INSTALL_MESSAGE
+
   s.files                     =
     Dir['bin/**/*'] +
     Dir['data/**/*'] +
