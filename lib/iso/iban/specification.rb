@@ -109,7 +109,7 @@ module ISO
 
       # @return [Array<Integer>] An array with the lengths of all components.
       def component_lengths
-        [bank_code_length, branch_code_length, account_code_lenght].tap { |lengths| lengths.delete(0) }
+        [bank_code_length, branch_code_length, account_code_length].tap { |lengths| lengths.delete(0) }
       end
 
       # @return [Fixnum]
@@ -126,7 +126,7 @@ module ISO
 
       # @return [Fixnum]
       #   The length of the account code in the IBAN.
-      def account_code_lenght
+      def account_code_length
         bban_length-bank_code_length-branch_code_length
       end
 
