@@ -95,6 +95,10 @@ module ISO
     # All specifications, see ISO::IBAN::Specification
     @specifications = nil
 
+    # @note
+    #   Using `require 'iso/iban'` will automatically invoke this method.
+    #   If you do not wish this behavior, `require 'iso/iban/no_autoload'` instead.
+    #
     # Load the IBAN specifications file, which determines how the IBAN
     # for any given country looks like.
     #
@@ -135,7 +139,7 @@ module ISO
     # @return [Hash<String => ISO::IBAN::Specification>]
     #   A hash with the country (ISO3166 2-letter) as key and the specification for that country as value
     def self.specifications
-      @specifications || raise("No specifications have been loaded yet.")
+      @specifications || raise("No specifications have been loaded yet - Check the docs for ISO::IBAN::load_specifications.")
     end
 
     # @param [String] a2_country_code
