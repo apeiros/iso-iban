@@ -13,6 +13,6 @@ module ISO
     # @note
     #   require 'iso/iban' loads the version.
     #
-    Version = Gem::Version.new("0.0.4")
+    Version = Gem::Version.new("0.1.0")
   end
 end
