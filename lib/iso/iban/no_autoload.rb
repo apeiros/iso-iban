@@ -56,6 +56,24 @@ module ISO
   #   registration authority exclusively by the National Standards Body or the
   #   National Central Bank of the country.
   class IBAN
+
+    # Raised by ISO::IBAN::parse!
+    class InvalidIban < ArgumentError
+
+      # @return [Array<Symbol>] The errors in the IBAN.
+      # @see ISO::IBAN#validate
+      attr_reader :errors
+
+      # @return [ISO::IBAN] The faulty IBAN.
+      attr_reader :iban
+
+      def initialize(iban)
+        super("The IBAN #{iban.formatted} is invalid (#{@errors.join(', ')})")
+        @iban   = iban
+        @errors = iban.validate
+      end
+    end
+
     include Comparable
 
     # Character code translation used to convert an IBAN into its numeric
@@ -134,7 +152,7 @@ module ISO
     #   Whether the IBAN is valid.
     #   See {#validate} for details.
     def self.valid?(iban)
-      new(iban).valid?
+      parse(iban).valid?
     end
 
     # @param [String] iban
@@ -144,16 +162,39 @@ module ISO
     #   An array with a code of all validation errors, empty if valid.
     #   See {#validate} for details.
     def self.validate(iban)
-      new(iban).validate
+      parse(iban).validate
     end
 
     # @param [String] iban
     #   The IBAN in either compact or human readable form.
     #
     # @return [String]
-    #   The IBAN in compact form.
+    #   The IBAN in compact form, all whitespace stripped.
     def self.strip(iban)
-      iban.tr(' -', '')
+      iban.delete("\n\r\t -")
+    end
+
+    # Like ISO::IBAN.parse, but raises a ISO::IBAN::InvalidIban exception if the IBAN is invalid.
+    #
+    # @param [String] iban
+    #   The IBAN in either compact or human readable form.
+    #
+    # @return [ISO::IBAN]
+    #   An IBAN instance representing the passed IBAN number.
+    def self.parse!(iban_number)
+      iban   = parse(iban_number)
+      raise InvalidIban.new(iban) unless iban.valid?
+
+      iban
+    end
+
+    # @param [String] iban
+    #   The IBAN in either compact or human readable form.
+    #
+    # @return [ISO::IBAN]
+    #   An IBAN instance representing the passed IBAN number.
+    def self.parse(iban_number)
+      new(strip(iban_number))
     end
 
     # Generate an IBAN from country code and components, automatically filling in the checksum.
