@@ -1,5 +1,6 @@
 # encoding: utf-8
 
+require 'iso/iban/backports'
 require 'iso/iban/invalid'
 require 'iso/iban/specification'
 require 'iso/iban/version'
