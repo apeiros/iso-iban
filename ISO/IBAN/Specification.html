@@ -538,7 +538,7 @@ maximum length.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#account_code_lenght-instance_method" title="#account_code_lenght (instance method)">- (Fixnum) <strong>account_code_lenght</strong> </a>
+      <a href="#account_code_length-instance_method" title="#account_code_length (instance method)">- (Fixnum) <strong>account_code_length</strong> </a>
     
 
     
@@ -1465,9 +1465,9 @@ maximum length</p>
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="account_code_lenght-instance_method">
+  <h3 class="signature first" id="account_code_length-instance_method">
   
-    - (<tt>Fixnum</tt>) <strong>account_code_lenght</strong> 
+    - (<tt>Fixnum</tt>) <strong>account_code_length</strong> 
   
 
   
@@ -1515,7 +1515,7 @@ maximum length</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/iso/iban/specification.rb', line 129</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_account_code_lenght'>account_code_lenght</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_account_code_length'>account_code_length</span>
   <span class='id identifier rubyid_bban_length'>bban_length</span><span class='op'>-</span><span class='id identifier rubyid_bank_code_length'>bank_code_length</span><span class='op'>-</span><span class='id identifier rubyid_branch_code_length'>branch_code_length</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1695,7 +1695,7 @@ branch code.</p>
       <pre class="code"><span class="info file"># File 'lib/iso/iban/specification.rb', line 111</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_component_lengths'>component_lengths</span>
-  <span class='lbracket'>[</span><span class='id identifier rubyid_bank_code_length'>bank_code_length</span><span class='comma'>,</span> <span class='id identifier rubyid_branch_code_length'>branch_code_length</span><span class='comma'>,</span> <span class='id identifier rubyid_account_code_lenght'>account_code_lenght</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_tap'>tap</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_lengths'>lengths</span><span class='op'>|</span> <span class='id identifier rubyid_lengths'>lengths</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='lbracket'>[</span><span class='id identifier rubyid_bank_code_length'>bank_code_length</span><span class='comma'>,</span> <span class='id identifier rubyid_branch_code_length'>branch_code_length</span><span class='comma'>,</span> <span class='id identifier rubyid_account_code_length'>account_code_length</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_tap'>tap</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_lengths'>lengths</span><span class='op'>|</span> <span class='id identifier rubyid_lengths'>lengths</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1906,7 +1906,7 @@ branch code.</p>
 </div>
 
     <div id="footer">
-  Generated on Mon Feb 17 20:29:17 2014 by
+  Generated on Mon Feb 17 23:14:53 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-2.1.0).
 </div>
