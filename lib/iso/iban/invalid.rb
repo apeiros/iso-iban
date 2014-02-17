@@ -16,9 +16,9 @@ module ISO
       # @param [ISO::IBAN] iban
       #    The faulty IBAN.
       def initialize(iban)
-        super("The IBAN #{iban.formatted} is invalid (#{@errors.join(', ')})")
         @iban   = iban
         @errors = iban.validate
+        super("The IBAN #{@iban.formatted} is invalid (#{@errors.join(', ')})")
       end
     end
   end
