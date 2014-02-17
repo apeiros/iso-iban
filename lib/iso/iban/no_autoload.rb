@@ -99,7 +99,7 @@ module ISO
     #   If you do not wish this behavior, `require 'iso/iban/no_autoload'` instead.
     #
     # Load the IBAN specifications file, which determines how the IBAN
-    # for any given country looks like.
+    # for any given country looks.
     #
     # It will use the following sources in this order (first one which exists wins)
     #
@@ -179,7 +179,7 @@ module ISO
       iban.delete("\n\r\t -")
     end
 
-    # Like ISO::IBAN.parse, but raises a ISO::IBAN::Invalid exception if the IBAN is invalid.
+    # Like ISO::IBAN.parse, but raises an ISO::IBAN::Invalid exception if the IBAN is invalid.
     #
     # @param [String] iban_number
     #   The IBAN in either compact or human readable form.
@@ -315,7 +315,7 @@ module ISO
     #   {ISO::IBAN#initialize} on the other hand expects the IBAN in compact format and will not strip
     #   those characters.
     #
-    # Validation error codes:
+    # Error codes:
     #
     # * :invalid_characters
     # * :invalid_country

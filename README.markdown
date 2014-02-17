@@ -5,7 +5,7 @@ README
 Summary
 -------
 
-ISO::IBAN implements IBAN (International Bank Account Number) specification as per ISO 13616-1.
+ISO::IBAN implements the IBAN (International Bank Account Number) specification as per ISO 13616-1.
 It provides methods to generate valid IBAN numbers from components, or to validate a given IBAN.
 
 
