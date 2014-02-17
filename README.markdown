@@ -46,6 +46,15 @@ Usage
 Note: iso/iban automatically loads the IBAN specifications delivered with the gem. If you do not wish
 those to be loaded, `require 'iso/iban/no_autoload'` instead.
 
+
+ENV
+---
+
+ISO::IBAN.load_specifications (which is automatically called when you require 'iso/iban') uses the
+ENV variable `IBAN_SPECIFICATIONS` to determine where to look for IBAN specifications. If that
+variable is not set, it will default to the datafile delivered with the gem.
+
+
 Links
 -----
 
