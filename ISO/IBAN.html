@@ -1,0 +1,4046 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: ISO::IBAN
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (I)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../ISO.html" title="ISO (module)">ISO</a></span></span>
+     &raquo; 
+    <span class="title">IBAN</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: ISO::IBAN
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">ISO::IBAN</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2">Comparable</dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/iso/iban/no_autoload.rb<span class="defines">,<br />
+  lib/iso/iban/version.rb,<br /> lib/iso/iban/invalid.rb,<br /> lib/iso/iban/specification.rb</span>
+</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>IBAN - ISO 13616-1</p>
+
+<h1 id="label-Usage">Usage</h1>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>iso/iban</span><span class='tstring_end'>&#39;</span></span>
+<span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CH35 1234 5987 6543 2109 A</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>       <span class='comment'># =&gt; true
+</span><span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CH37 1234 5987 6543 2109 A</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>     <span class='comment'># =&gt; [:invalid_checksum]
+</span><span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_generate'>generate</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CH</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>12345</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>987</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>             <span class='comment'># =&gt; #&lt;ISO::IBAN CH76 1234 5000 0000 0098 7&gt;
+</span><span class='id identifier rubyid_iban'>iban</span> <span class='op'>=</span> <span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CH35 1234 5987 6543 2109 A</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; #&lt;ISO::IBAN CH35 1234 5987 6543 2109 A&gt;
+</span><span class='id identifier rubyid_iban'>iban</span> <span class='op'>=</span> <span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CH351234598765432109A</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>        <span class='comment'># =&gt; #&lt;ISO::IBAN CH35 1234 5987 6543 2109 A&gt;
+</span><span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_formatted'>formatted</span>       <span class='comment'># =&gt; &quot;CH35 1234 5987 6543 2109 A&quot;
+</span><span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span>         <span class='comment'># =&gt; &quot;CH351234598765432109A&quot;
+</span><span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_country'>country</span>         <span class='comment'># =&gt; &quot;CH&quot;
+</span><span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_checksum_digits'>checksum_digits</span> <span class='comment'># =&gt; &quot;35&quot;
+</span><span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_bank_code'>bank_code</span>       <span class='comment'># =&gt; &quot;12345&quot;
+</span><span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_account_code'>account_code</span>    <span class='comment'># =&gt; &quot;98765432109A&quot;
+</span><span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span>          <span class='comment'># =&gt; true
+</span><span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span>        <span class='comment'># =&gt; []
+</span></code></pre>
+
+<h1 id="label-General+IBAN+Information">General IBAN Information</h1>
+<ul><li>
+<p><strong>What is an IBAN?</strong><br>  IBAN stands for International Bank
+Account Number. It is the ISO 13616  international standard for numbering
+bank accounts. In 2006, the  International Organization for Standardization
+(ISO) designated SWIFT as  the Registration Authority for ISO 13616.</p>
+</li><li>
+<p><strong>Use</strong><br>  The IBAN facilitates the communication and
+processing of cross-border  transactions. It allows exchanging account
+identification details in a  machine-readable form.</p>
+</li></ul>
+
+<h1 id="label-The+ISO+13616+IBAN+Standard">The ISO 13616 IBAN Standard</h1>
+<ul><li>
+<p><strong>Structure</strong><br>  The IBAN structure is defined in ISO
+13616-1 and consists of a two-letter  ISO 3166-1 country code, followed by
+two check digits and up to thirty  alphanumeric characters for a BBAN
+(Basic Bank Account Number) which has a  fixed length per country and,
+included within it, a bank identifier with a  fixed position and a fixed
+length per country. The check digits are  calculated based on the scheme
+defined in ISO/IEC 7064 (MOD97-10).</p>
+</li><li>
+<p><strong>Terms and definitions</strong></p>
+<ul><li>
+<p><em>Bank identifier:</em> The identifier that uniquely identifies the
+financial  institution and, when appropriate, the branch of that financial
+institution  servicing an account.</p>
+</li><li>
+<p><em>BBAN:</em> basic bank account number: The identifier that uniquely
+identifies  an individual account, at a specific financial institution, in
+a particular  country. The BBAN includes a bank identifier of the financial
+institution  servicing that account.</p>
+</li><li>
+<p><em>IBAN:</em> international bank account number: The expanded version of
+the  basic bank account number (BBAN), intended for use internationally.
+The  IBAN uniquely identifies an individual account, at a specific
+financial  institution, in a particular country.</p>
+</li></ul>
+</li><li>
+<p><strong>Submitters</strong><br>  Nationally-agreed, ISO13616-compliant IBAN
+formats are submitted to the  registration authority exclusively by the
+National Standards Body or the  National Central Bank of the country.</p>
+</li></ul>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="IBAN/Invalid.html" title="ISO::IBAN::Invalid (class)">Invalid</a></span>, <span class='object_link'><a href="IBAN/Specification.html" title="ISO::IBAN::Specification (class)">Specification</a></span>
+    
+  
+</p>
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="Version-constant" class="">Version =
+          <div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>require &#39;iso/iban&#39; loads the version.</p>
+</div>
+  </div>
+
+
+<p>The version of the sorting gem.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>Gem</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0.1.0</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="CharacterCodes-constant" class="">CharacterCodes =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Character code translation used to convert an IBAN into its numeric
+(digits-only) form</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>Hash</span><span class='lbracket'>[</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0</span><span class='tstring_end'>&#39;</span></span><span class='op'>..</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>9</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_zip'>zip</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0</span><span class='tstring_end'>&#39;</span></span><span class='op'>..</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>9</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='op'>+</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a</span><span class='tstring_end'>&#39;</span></span><span class='op'>..</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>z</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_zip'>zip</span><span class='lparen'>(</span><span class='int'>10</span><span class='op'>..</span><span class='int'>35</span><span class='rparen'>)</span><span class='op'>+</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>A</span><span class='tstring_end'>&#39;</span></span><span class='op'>..</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Z</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_zip'>zip</span><span class='lparen'>(</span><span class='int'>10</span><span class='op'>..</span><span class='int'>35</span><span class='rparen'>)</span><span class='rbracket'>]</span></pre></dd>
+      
+        <dt id="UpperAlpha-constant" class="">UpperAlpha =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>All uppercase letters</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span><span class='op'>*</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>A</span><span class='tstring_end'>&#39;</span></span><span class='op'>..</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Z</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span></pre></dd>
+      
+        <dt id="LowerAlpha-constant" class="">LowerAlpha =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>All lowercase letters</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span><span class='op'>*</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a</span><span class='tstring_end'>&#39;</span></span><span class='op'>..</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>z</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span></pre></dd>
+      
+        <dt id="Digits-constant" class="">Digits =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>All digits</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span><span class='op'>*</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0</span><span class='tstring_end'>&#39;</span></span><span class='op'>..</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>9</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span></pre></dd>
+      
+        <dt id="AlphaNumeric-constant" class="">AlphaNumeric =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>All uppercase letters, lowercase letters and digits</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span><span class='op'>*</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>A</span><span class='tstring_end'>&#39;</span></span><span class='op'>..</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Z</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='op'>*</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a</span><span class='tstring_end'>&#39;</span></span><span class='op'>..</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>z</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='op'>*</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0</span><span class='tstring_end'>&#39;</span></span><span class='op'>..</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>9</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#compact-instance_method" title="#compact (instance method)">- (String) <strong>compact</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The standard form of the IBAN for machine communication, without spaces,
+encoded in Encoding::BINARY.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#country-instance_method" title="#country (instance method)">- (String) <strong>country</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The ISO-3166 2-letter country code (first and second character).</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#specification-instance_method" title="#specification (instance method)">- (ISO::IBAN::Specification) <strong>specification</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The specification for this IBAN (determined by its country).</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#generate-class_method" title="generate (class method)">+ (Object) <strong>generate</strong>(country, *components) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Generate an IBAN from country code and components, automatically filling in
+the checksum.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#load_specifications-class_method" title="load_specifications (class method)">+ (self) <strong>load_specifications</strong>(spec_file = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Load the IBAN specifications file, which determines how the IBAN for any
+given country looks like.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#numerify-class_method" title="numerify (class method)">+ (String) <strong>numerify</strong>(string) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Converts a String into its digits-only form, i.e.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse-class_method" title="parse (class method)">+ (ISO::IBAN) <strong>parse</strong>(iban_number) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>An IBAN instance representing the passed IBAN number.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse%21-class_method" title="parse! (class method)">+ (ISO::IBAN) <strong>parse!</strong>(iban_number) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Like ISO::IBAN.parse, but raises a ISO::IBAN::Invalid exception if the IBAN
+is invalid.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#random-class_method" title="random (class method)">+ (ISO::IBAN) <strong>random</strong>(*countries) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A random, valid IBAN.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#specification-class_method" title="specification (class method)">+ (ISO::IBAN::Specification) <strong>specification</strong>(a2_country_code, *default, &amp;default_block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The specification for the given country.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#specifications-class_method" title="specifications (class method)">+ (Hash&lt;String =&gt; ISO::IBAN::Specification&gt;) <strong>specifications</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A hash with the country (ISO3166 2-letter) as key and the specification for
+that country as value.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#strip-class_method" title="strip (class method)">+ (String) <strong>strip</strong>(iban) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The IBAN in compact form, all whitespace and dashes stripped.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#valid%3F-class_method" title="valid? (class method)">+ (true, false) <strong>valid?</strong>(iban) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Whether the IBAN is valid.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#validate-class_method" title="validate (class method)">+ (Array&lt;Symbol&gt;) <strong>validate</strong>(iban) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>An array with a code of all validation errors, empty if valid.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%3C%3D%3E-instance_method" title="#&lt;=&gt; (instance method)">- (-1, ...) <strong>&lt;=&gt;</strong>(other) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>See Object#.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#account_code-instance_method" title="#account_code (instance method)">- (String) <strong>account_code</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The account code part of the IBAN.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bank_code-instance_method" title="#bank_code (instance method)">- (String<sup>?</sup>) <strong>bank_code</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The bank code part of the IBAN, nil if not applicable.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bban-instance_method" title="#bban (instance method)">- (String) <strong>bban</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The BBAN of the IBAN (everything except the country code and check digits).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#branch_code-instance_method" title="#branch_code (instance method)">- (String<sup>?</sup>) <strong>branch_code</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The branch code part of the IBAN, nil if not applicable.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#calculated_check_digits-instance_method" title="#calculated_check_digits (instance method)">- (String) <strong>calculated_check_digits</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The check-digits as calculated from the IBAN.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#checksum_digits-instance_method" title="#checksum_digits (instance method)">- (String) <strong>checksum_digits</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The checksum digits in the IBAN (character 3 &amp; 4).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#eql%3F-instance_method" title="#eql? (instance method)">- (true, false) <strong>eql?</strong>(other) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Whether two ISO::IBANs are equal.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#formatted-instance_method" title="#formatted (instance method)">- (String) <strong>formatted</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The IBAN in its formatted form, which is more human readable than the
+compact form.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#hash-instance_method" title="#hash (instance method)">- (Integer) <strong>hash</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A hash value, see Object#hash.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (IBAN) <strong>initialize</strong>(iban) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of IBAN.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#inspect-instance_method" title="#inspect (instance method)">- (Object) <strong>inspect</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>See Object#inspect.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#invalid_characters-instance_method" title="#invalid_characters (instance method)">- (Array) <strong>invalid_characters</strong>(input_encoding = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>An Array with all invalid characters.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#numeric-instance_method" title="#numeric (instance method)">- (Integer<sup>?</sup>) <strong>numeric</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>IBAN in its numeric form, i.e.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_a-instance_method" title="#to_a (instance method)">- (Array) <strong>to_a</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The individual IBAN components as defined by the SWIFT specification.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_s-instance_method" title="#to_s (instance method)">- (String) <strong>to_s</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The compact form of the IBAN as a String.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_checksum%21-instance_method" title="#update_checksum! (instance method)">- (self) <strong>update_checksum!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Requires that the checksum digits were left as &#39;??&#39;, replaces them
+with the proper checksum.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#valid%3F-instance_method" title="#valid? (instance method)">- (true, false) <strong>valid?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Whether the IBAN is valid.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#valid_characters%3F-instance_method" title="#valid_characters? (instance method)">- (true, false) <strong>valid_characters?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Whether IBAN consists only of valid characters.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#valid_checksum%3F-instance_method" title="#valid_checksum? (instance method)">- (true, false) <strong>valid_checksum?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Whether the checksum of the IBAN is valid.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#valid_country%3F-instance_method" title="#valid_country? (instance method)">- (true, false) <strong>valid_country?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Whether the country of the IBAN is valid.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#valid_format%3F-instance_method" title="#valid_format? (instance method)">- (true, false) <strong>valid_format?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Whether the format of the IBAN is valid.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#valid_length%3F-instance_method" title="#valid_length? (instance method)">- (true, false) <strong>valid_length?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Whether the length of the IBAN is valid.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#validate-instance_method" title="#validate (instance method)">- (Array&lt;Symbol&gt;) <strong>validate</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Validation error codes:.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="ISO::IBAN (class)">IBAN</a></span></tt>) <strong>initialize</strong>(iban) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of IBAN</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>iban</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The IBAN number, must be in compact form. Use ISO::IBAN::parse for
+formatted IBANs.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+280
+281
+282
+283
+284
+285
+286</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 280</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_iban'>iban</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>String expected for iban, but got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span>
+
+  <span class='ivar'>@compact</span>       <span class='op'>=</span> <span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_b'>b</span>
+  <span class='ivar'>@country</span>       <span class='op'>=</span> <span class='id identifier rubyid_iban'>iban</span><span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span><span class='int'>2</span><span class='rbracket'>]</span>
+  <span class='ivar'>@specification</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_specification'>specification</span><span class='lparen'>(</span><span class='ivar'>@country</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="compact-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>compact</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns The standard form of the IBAN for machine communication, without
+spaces, encoded in Encoding::BINARY.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The standard form of the IBAN for machine communication, without spaces,
+encoded in Encoding::BINARY.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+270
+271
+272</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 270</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_compact'>compact</span>
+  <span class='ivar'>@compact</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="country-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>country</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns The ISO-3166 2-letter country code (first and second character).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The ISO-3166 2-letter country code (first and second character).</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+273
+274
+275</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 273</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_country'>country</span>
+  <span class='ivar'>@country</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="specification-instance_method">
+  
+    - (<tt><span class='object_link'><a href="IBAN/Specification.html" title="ISO::IBAN::Specification (class)">ISO::IBAN::Specification</a></span></tt>) <strong>specification</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns The specification for this IBAN (determined by its country).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="IBAN/Specification.html" title="ISO::IBAN::Specification (class)">ISO::IBAN::Specification</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The specification for this IBAN (determined by its country).</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+276
+277
+278</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 276</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_specification'>specification</span>
+  <span class='ivar'>@specification</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="generate-class_method">
+  
+    + (<tt>Object</tt>) <strong>generate</strong>(country, *components) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p><code>generate</code> will pad all segments with zeros, which means it will
+generate invalid IBANs if you provide too short segments which are
+alphabetic only.<br> For example, <code>ISO::IBAN.generate(&#39;BG&#39;,
+&#39;A&#39;, &#39;2&#39;, &#39;C&#39;)</code> generates an invalid IBAN.</p>
+</div>
+  </div>
+
+
+<p>Generate an IBAN from country code and components, automatically filling in
+the checksum.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Generate an IBAN for UBS Switzerland with account number &#39;12345&#39;</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_generate'>generate</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CH</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>216</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>12345</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; #&lt;ISO::IBAN CH92 0021 6000 0000 1234 5&gt;</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>country</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The ISO-3166 2-letter country code.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+218
+219
+220
+221
+222
+223
+224
+225</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 218</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_generate'>generate</span><span class='lparen'>(</span><span class='id identifier rubyid_country'>country</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_components'>components</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_spec'>spec</span>      <span class='op'>=</span> <span class='id identifier rubyid_specification'>specification</span><span class='lparen'>(</span><span class='id identifier rubyid_country'>country</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_justified'>justified</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_component_lengths'>component_lengths</span><span class='period'>.</span><span class='id identifier rubyid_zip'>zip</span><span class='lparen'>(</span><span class='id identifier rubyid_components'>components</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_length'>length</span><span class='comma'>,</span> <span class='id identifier rubyid_component'>component</span><span class='op'>|</span> <span class='id identifier rubyid_component'>component</span><span class='period'>.</span><span class='id identifier rubyid_rjust'>rjust</span><span class='lparen'>(</span><span class='id identifier rubyid_length'>length</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_iban'>iban</span>      <span class='op'>=</span> <span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_country'>country</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>??</span><span class='tstring_end'>&#39;</span></span><span class='op'>+</span><span class='id identifier rubyid_justified'>justified</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_update_checksum!'>update_checksum!</span>
+
+  <span class='id identifier rubyid_iban'>iban</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="load_specifications-class_method">
+  
+    + (<tt>self</tt>) <strong>load_specifications</strong>(spec_file = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>Using <code>require &#39;iso/iban&#39;</code> will automatically invoke
+this method. If you do not wish this behavior, <code>require
+&#39;iso/iban/no_autoload&#39;</code> instead.</p>
+</div>
+  </div>
+
+
+<p>Load the IBAN specifications file, which determines how the IBAN for any
+given country looks like.</p>
+
+<p>It will use the following sources in this order (first one which exists
+wins)</p>
+<ul><li>
+<p>Path passed as <code>spec_file</code> parameter</p>
+</li><li>
+<p>Path provided by the env variable <code>IBAN_SPECIFICATIONS</code></p>
+</li><li>
+<p>The file <code>../data/iso-iban/specs.yaml</code> relative to the lib dir</p>
+</li><li>
+<p>The Gem datadir path</p>
+</li></ul>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>spec_file</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Override the default specifications file path.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>self</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 115</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_load_specifications'>load_specifications</span><span class='lparen'>(</span><span class='id identifier rubyid_spec_file'>spec_file</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_spec_file'>spec_file</span> <span class='kw'>then</span>
+    <span class='comment'># do nothing
+</span>  <span class='kw'>elsif</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>IBAN_SPECIFICATIONS</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='kw'>then</span>
+    <span class='id identifier rubyid_spec_file'>spec_file</span> <span class='op'>=</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>IBAN_SPECIFICATIONS</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_spec_file'>spec_file</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_expand_path'>expand_path</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>../../../../data/iso-iban/specs.yaml</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='kw'>__FILE__</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_file?'>file?</span><span class='lparen'>(</span><span class='id identifier rubyid_spec_file'>spec_file</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'>Gem</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='const'>Gem</span><span class='period'>.</span><span class='id identifier rubyid_datadir'>datadir</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>iso-iban</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_spec_file'>spec_file</span> <span class='op'>=</span> <span class='const'>Gem</span><span class='period'>.</span><span class='id identifier rubyid_datadir'>datadir</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>iso-iban</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/specs.yaml</span><span class='tstring_end'>&#39;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_spec_file'>spec_file</span> <span class='op'>&amp;&amp;</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_file?'>file?</span><span class='lparen'>(</span><span class='id identifier rubyid_spec_file'>spec_file</span><span class='rparen'>)</span>
+    <span class='ivar'>@specifications</span> <span class='op'>=</span> <span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='op'>::</span><span class='const'>Specification</span><span class='period'>.</span><span class='id identifier rubyid_load_yaml'>load_yaml</span><span class='lparen'>(</span><span class='id identifier rubyid_spec_file'>spec_file</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_spec_file'>spec_file</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not load IBAN specifications, specs file </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_spec_file'>spec_file</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'> does not exist or can&#39;t be read.</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not load IBAN specifications, no specs file found.</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="numerify-class_method">
+  
+    + (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>numerify</strong>(string) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Converts a String into its digits-only form, i.e. all characters a-z are
+replaced with their corresponding digit sequences, according to the IBAN
+specification.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>string</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The string to convert into its numeric form.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The string in its numeric, digits-only form.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+261
+262
+263
+264
+265
+266
+267</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 261</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_numerify'>numerify</span><span class='lparen'>(</span><span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_string'>string</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\D</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_char'>char</span><span class='op'>|</span>
+    <span class='const'>CharacterCodes</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='id identifier rubyid_char'>char</span><span class='rparen'>)</span> <span class='lbrace'>{</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The string contains an invalid character </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_char'>char</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='rbrace'>}</span>
+  <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse-class_method">
+  
+    + (<tt><span class='object_link'><a href="" title="ISO::IBAN (class)">ISO::IBAN</a></span></tt>) <strong>parse</strong>(iban_number) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns An IBAN instance representing the passed IBAN number.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>iban_number</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The IBAN in either compact or human readable form.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="ISO::IBAN (class)">ISO::IBAN</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>An IBAN instance representing the passed IBAN number.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+201
+202
+203</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 201</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_iban_number'>iban_number</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_strip'>strip</span><span class='lparen'>(</span><span class='id identifier rubyid_iban_number'>iban_number</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse!-class_method">
+  
+    + (<tt><span class='object_link'><a href="" title="ISO::IBAN (class)">ISO::IBAN</a></span></tt>) <strong>parse!</strong>(iban_number) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Like ISO::IBAN.parse, but raises a ISO::IBAN::Invalid exception if the IBAN
+is invalid.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>iban_number</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The IBAN in either compact or human readable form.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="ISO::IBAN (class)">ISO::IBAN</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>An IBAN instance representing the passed IBAN number.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="IBAN/Invalid.html" title="ISO::IBAN::Invalid (class)">Invalid</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+189
+190
+191
+192
+193
+194</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 189</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse!'>parse!</span><span class='lparen'>(</span><span class='id identifier rubyid_iban_number'>iban_number</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_iban'>iban</span>   <span class='op'>=</span> <span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_iban_number'>iban_number</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Invalid</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_iban'>iban</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span>
+
+  <span class='id identifier rubyid_iban'>iban</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="random-class_method">
+  
+    + (<tt><span class='object_link'><a href="" title="ISO::IBAN (class)">ISO::IBAN</a></span></tt>) <strong>random</strong>(*countries) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns A random, valid IBAN.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>countries</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A list of 2 letter country codes. If empty, all countries in
+ISO::IBAN::specifications are used.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="ISO::IBAN (class)">ISO::IBAN</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A random, valid IBAN.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 231</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_random'>random</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_countries'>countries</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_countries'>countries</span> <span class='op'>=</span> <span class='id identifier rubyid_specifications'>specifications</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span> <span class='kw'>if</span> <span class='id identifier rubyid_countries'>countries</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+  <span class='id identifier rubyid_country'>country</span>   <span class='op'>=</span> <span class='id identifier rubyid_countries'>countries</span><span class='period'>.</span><span class='id identifier rubyid_sample'>sample</span>
+  <span class='id identifier rubyid_account'>account</span>   <span class='op'>=</span> <span class='id identifier rubyid_specification'>specification</span><span class='lparen'>(</span><span class='id identifier rubyid_country'>country</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_iban_structure'>iban_structure</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>([A-Z]+)|(\d+)(!?)([nac])</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_exact'>exact</span><span class='comma'>,</span> <span class='id identifier rubyid_length'>length</span><span class='comma'>,</span> <span class='id identifier rubyid_fixed'>fixed</span><span class='comma'>,</span> <span class='id identifier rubyid_code'>code</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_exact'>exact</span>
+      <span class='id identifier rubyid_exact'>exact</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>a</span><span class='tstring_end'>&#39;</span></span>
+      <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_length'>length</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='const'>UpperAlpha</span><span class='period'>.</span><span class='id identifier rubyid_sample'>sample</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>c</span><span class='tstring_end'>&#39;</span></span>
+      <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_length'>length</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='const'>AlphaNumeric</span><span class='period'>.</span><span class='id identifier rubyid_sample'>sample</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>e</span><span class='tstring_end'>&#39;</span></span>
+      <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> </span><span class='tstring_end'>&#39;</span></span><span class='op'>*</span><span class='id identifier rubyid_length'>length</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>n</span><span class='tstring_end'>&#39;</span></span>
+      <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_length'>length</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='const'>Digits</span><span class='period'>.</span><span class='id identifier rubyid_sample'>sample</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_account'>account</span><span class='lbracket'>[</span><span class='int'>2</span><span class='comma'>,</span><span class='int'>2</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>??</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_iban'>iban</span> <span class='op'>=</span> <span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_account'>account</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_update_checksum!'>update_checksum!</span>
+
+  <span class='id identifier rubyid_iban'>iban</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="specification-class_method">
+  
+    + (<tt><span class='object_link'><a href="IBAN/Specification.html" title="ISO::IBAN::Specification (class)">ISO::IBAN::Specification</a></span></tt>) <strong>specification</strong>(a2_country_code, *default, &amp;default_block) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns The specification for the given country.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>a2_country_code</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The country (ISO3166 2-letter), e.g. &#39;CH&#39; or &#39;DE&#39;.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="IBAN/Specification.html" title="ISO::IBAN::Specification (class)">ISO::IBAN::Specification</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The specification for the given country.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+149
+150
+151</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 149</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_specification'>specification</span><span class='lparen'>(</span><span class='id identifier rubyid_a2_country_code'>a2_country_code</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_default'>default</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_default_block'>default_block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_specifications'>specifications</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='id identifier rubyid_a2_country_code'>a2_country_code</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_default'>default</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_default_block'>default_block</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="specifications-class_method">
+  
+    + (<tt>Hash&lt;<span class='object_link'><a href="../String.html" title="String (class)">String</a></span> =&gt; <span class='object_link'><a href="IBAN/Specification.html" title="ISO::IBAN::Specification (class)">ISO::IBAN::Specification</a></span>&gt;</tt>) <strong>specifications</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns A hash with the country (ISO3166 2-letter) as key and the
+specification for that country as value.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash&lt;<span class='object_link'><a href="../String.html" title="String (class)">String</a></span> =&gt; <span class='object_link'><a href="IBAN/Specification.html" title="ISO::IBAN::Specification (class)">ISO::IBAN::Specification</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A hash with the country (ISO3166 2-letter) as key and the specification for
+that country as value.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+140
+141
+142</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 140</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_specifications'>specifications</span>
+  <span class='ivar'>@specifications</span> <span class='op'>||</span> <span class='id identifier rubyid_raise'>raise</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>No specifications have been loaded yet - Check the docs for ISO::IBAN::load_specifications.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="strip-class_method">
+  
+    + (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>strip</strong>(iban) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns The IBAN in compact form, all whitespace and dashes stripped.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>iban</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The IBAN in either compact or human readable form.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The IBAN in compact form, all whitespace and dashes stripped.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+178
+179
+180</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 178</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='lparen'>(</span><span class='id identifier rubyid_iban'>iban</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n\r\t -</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="valid?-class_method">
+  
+    + (<tt>true</tt>, <tt>false</tt>) <strong>valid?</strong>(iban) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns Whether the IBAN is valid.<br> See <span class='object_link'><a href="#validate-instance_method" title="ISO::IBAN#validate (method)">#validate</a></span> for details.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>iban</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>An IBAN number, either in compact or human format.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Whether the IBAN is valid.<br> See <span class='object_link'><a href="#validate-instance_method" title="ISO::IBAN#validate (method)">#validate</a></span> for details.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+159
+160
+161</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 159</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span><span class='lparen'>(</span><span class='id identifier rubyid_iban'>iban</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_iban'>iban</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="validate-class_method">
+  
+    + (<tt>Array&lt;Symbol&gt;</tt>) <strong>validate</strong>(iban) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns An array with a code of all validation errors, empty if valid.<br>
+See <span class='object_link'><a href="#validate-instance_method" title="ISO::IBAN#validate (method)">#validate</a></span> for details.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>iban</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>An IBAN number, either in compact or human format.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Symbol&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>An array with a code of all validation errors, empty if valid.<br> See
+<span class='object_link'><a href="#validate-instance_method" title="ISO::IBAN#validate (method)">#validate</a></span> for details.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+169
+170
+171</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 169</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='id identifier rubyid_iban'>iban</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_iban'>iban</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="<=>-instance_method">
+  
+    - (<tt>-1</tt>, ...) <strong>&lt;=&gt;</strong>(other) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>See Object#&lt;=&gt;</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>-1</tt>, <tt>0</tt>, <tt>1</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+425
+426
+427</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 425</span>
+
+<span class='kw'>def</span> <span class='op'>&lt;=&gt;</span><span class='lparen'>(</span><span class='id identifier rubyid_other'>other</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_other'>other</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:compact</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='ivar'>@compact</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_other'>other</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span> <span class='op'>:</span> <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="account_code-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>account_code</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns The account code part of the IBAN.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The account code part of the IBAN.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+373
+374
+375</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 373</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_account_code'>account_code</span>
+  <span class='ivar'>@compact</span><span class='lbracket'>[</span><span class='lparen'>(</span><span class='lparen'>(</span><span class='ivar'>@specification</span><span class='period'>.</span><span class='id identifier rubyid_branch_position_to'>branch_position_to</span> <span class='op'>||</span> <span class='ivar'>@specification</span><span class='period'>.</span><span class='id identifier rubyid_bank_position_to'>bank_position_to</span> <span class='op'>||</span> <span class='int'>3</span><span class='rparen'>)</span><span class='op'>+</span><span class='int'>1</span><span class='rparen'>)</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bank_code-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt><sup>?</sup>) <strong>bank_code</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns The bank code part of the IBAN, nil if not applicable.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The bank code part of the IBAN, nil if not applicable.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+355
+356
+357
+358
+359
+360
+361</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 355</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bank_code'>bank_code</span>
+  <span class='kw'>if</span> <span class='ivar'>@specification</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@specification</span><span class='period'>.</span><span class='id identifier rubyid_bank_position_from'>bank_position_from</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@specification</span><span class='period'>.</span><span class='id identifier rubyid_bank_position_to'>bank_position_to</span>
+    <span class='ivar'>@compact</span><span class='lbracket'>[</span><span class='ivar'>@specification</span><span class='period'>.</span><span class='id identifier rubyid_bank_position_from'>bank_position_from</span><span class='op'>..</span><span class='ivar'>@specification</span><span class='period'>.</span><span class='id identifier rubyid_bank_position_to'>bank_position_to</span><span class='rbracket'>]</span>
+  <span class='kw'>else</span>
+    <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bban-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>bban</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns The BBAN of the IBAN (everything except the country code and check
+digits).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The BBAN of the IBAN (everything except the country code and check digits).</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+350
+351
+352</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 350</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bban'>bban</span>
+  <span class='ivar'>@compact</span><span class='lbracket'>[</span><span class='int'>4</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="branch_code-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt><sup>?</sup>) <strong>branch_code</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns The branch code part of the IBAN, nil if not applicable.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The branch code part of the IBAN, nil if not applicable.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+364
+365
+366
+367
+368
+369
+370</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 364</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_branch_code'>branch_code</span>
+  <span class='kw'>if</span> <span class='ivar'>@specification</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@specification</span><span class='period'>.</span><span class='id identifier rubyid_branch_position_from'>branch_position_from</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@specification</span><span class='period'>.</span><span class='id identifier rubyid_branch_position_to'>branch_position_to</span>
+    <span class='ivar'>@compact</span><span class='lbracket'>[</span><span class='ivar'>@specification</span><span class='period'>.</span><span class='id identifier rubyid_branch_position_from'>branch_position_from</span><span class='op'>..</span><span class='ivar'>@specification</span><span class='period'>.</span><span class='id identifier rubyid_branch_position_to'>branch_position_to</span><span class='rbracket'>]</span>
+  <span class='kw'>else</span>
+    <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="calculated_check_digits-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>calculated_check_digits</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns The check-digits as calculated from the IBAN.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The check-digits as calculated from the IBAN.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+442
+443
+444</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 442</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_calculated_check_digits'>calculated_check_digits</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%02d</span><span class='tstring_end'>&quot;</span></span> <span class='op'>%</span> <span class='lparen'>(</span><span class='int'>98</span><span class='op'>-</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_numerify'>numerify</span><span class='lparen'>(</span><span class='id identifier rubyid_bban'>bban</span><span class='op'>+</span><span class='ivar'>@country</span><span class='rparen'>)</span><span class='op'>*</span><span class='int'>100</span><span class='rparen'>)</span><span class='op'>%</span><span class='int'>97</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="checksum_digits-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>checksum_digits</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns The checksum digits in the IBAN (character 3 &amp; 4).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The checksum digits in the IBAN (character 3 &amp; 4).</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+345
+346
+347</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 345</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_checksum_digits'>checksum_digits</span>
+  <span class='ivar'>@compact</span><span class='lbracket'>[</span><span class='int'>2</span><span class='comma'>,</span><span class='int'>2</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="eql?-instance_method">
+  
+    - (<tt>true</tt>, <tt>false</tt>) <strong>eql?</strong>(other) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns Whether two ISO::IBANs are equal. Comparison is based on class and
+IBAN number</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Whether two ISO::IBANs are equal. Comparison is based on class and IBAN
+number</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+449
+450
+451</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 449</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='id identifier rubyid_other'>other</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_equal?'>equal?</span><span class='lparen'>(</span><span class='id identifier rubyid_other'>other</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='kw'>self</span> <span class='op'>==</span> <span class='id identifier rubyid_other'>other</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="formatted-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>formatted</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns The IBAN in its formatted form, which is more human readable than
+the compact form.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'>
+<p>Formatted IBAN</p>
+</div></p>
+      
+      <pre class="example code"><code>
+<span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CH</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The IBAN in its formatted form, which is more human readable than the
+compact form.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+293
+294
+295</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 293</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_formatted'>formatted</span>
+  <span class='ivar'>@_formatted</span> <span class='op'>||=</span> <span class='ivar'>@compact</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>.{4}(?=.)</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\0 </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="hash-instance_method">
+  
+    - (<tt>Integer</tt>) <strong>hash</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns A hash value, see Object#hash</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A hash value, see Object#hash</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+455
+456
+457</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 455</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hash'>hash</span>
+  <span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='comma'>,</span> <span class='ivar'>@compact</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_hash'>hash</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="inspect-instance_method">
+  
+    - (<tt>Object</tt>) <strong>inspect</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>See Object#inspect</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+460
+461
+462</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 460</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_inspect'>inspect</span>
+  <span class='id identifier rubyid_sprintf'>sprintf</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>#&lt;%p %s&gt;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='comma'>,</span> <span class='id identifier rubyid_formatted'>formatted</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="invalid_characters-instance_method">
+  
+    - (<tt>Array</tt>) <strong>invalid_characters</strong>(input_encoding = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns An Array with all invalid characters.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_invalid'>invalid</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>hägar</span><span class='tstring_end'>&quot;</span></span>
+<span class='id identifier rubyid_invalid'>invalid</span><span class='period'>.</span><span class='id identifier rubyid_encoding'>encoding</span> <span class='comment'># =&gt; #&lt;Encoding:UTF-8&gt;
+</span><span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_invalid'>invalid</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_invalid_characters'>invalid_characters</span>          <span class='comment'># =&gt; [&quot;\xC3&quot;, &quot;\xA4&quot;]
+</span><span class='const'>ISO</span><span class='op'>::</span><span class='const'>IBAN</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_invalid'>invalid</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_invalid_characters'>invalid_characters</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>utf-8</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># =&gt; [&quot;ä&quot;]</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>input_encoding</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>, <tt>Encoding</tt>, <tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>ISO::IBAN::new interprets the passed IBAN as binary. If you got the IBAN
+from a source which is not binary, you should provide that encoding.
+Otherwise an invalid character may be split into multiple bytes.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>An Array with all invalid characters.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+389
+390
+391
+392
+393</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 389</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_invalid_characters'>invalid_characters</span><span class='lparen'>(</span><span class='id identifier rubyid_input_encoding'>input_encoding</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_iban'>iban</span> <span class='op'>=</span> <span class='id identifier rubyid_input_encoding'>input_encoding</span> <span class='op'>?</span> <span class='ivar'>@compact</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span><span class='period'>.</span><span class='id identifier rubyid_force_encoding'>force_encoding</span><span class='lparen'>(</span><span class='id identifier rubyid_input_encoding'>input_encoding</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='ivar'>@compact</span>
+
+  <span class='id identifier rubyid_iban'>iban</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[A-Z0-9?]*</span><span class='regexp_end'>/i</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_chars'>chars</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="numeric-instance_method">
+  
+    - (<tt>Integer</tt><sup>?</sup>) <strong>numeric</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns IBAN in its numeric form, i.e. all characters a-z are replaced with
+their corresponding digit sequences.<br> Will return nil if the IBAN is
+shorter than 5 characters (which makes it invalid).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>IBAN in its numeric form, i.e. all characters a-z are replaced with their
+corresponding digit sequences.<br> Will return nil if the IBAN is shorter
+than 5 characters (which makes it invalid).</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+301
+302
+303</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 301</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_numeric'>numeric</span>
+  <span class='ivar'>@compact</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&lt;</span> <span class='int'>5</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_numerify'>numerify</span><span class='lparen'>(</span><span class='ivar'>@compact</span><span class='lbracket'>[</span><span class='int'>4</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='op'>+</span><span class='ivar'>@compact</span><span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span><span class='int'>4</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_a-instance_method">
+  
+    - (<tt>Array</tt>) <strong>to_a</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>This method is experimental. It might change or be removed in future
+versions!</p>
+</div>
+  </div>
+
+
+<p>Returns The individual IBAN components as defined by the SWIFT
+specification. An empty array if this IBAN does not have a specification.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The individual IBAN components as defined by the SWIFT specification. An
+empty array if this IBAN does not have a specification.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+475
+476
+477
+478
+479</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 475</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_a'>to_a</span>
+  <span class='ivar'>@_components</span> <span class='op'>||=</span> <span class='ivar'>@specification</span> <span class='op'>?</span> <span class='ivar'>@compact</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='ivar'>@specification</span><span class='period'>.</span><span class='id identifier rubyid_iban_regex'>iban_regex</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_captures'>captures</span> <span class='op'>:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+
+  <span class='ivar'>@_components</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_s-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>to_s</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns The compact form of the IBAN as a String.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The compact form of the IBAN as a String.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+465
+466
+467</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 465</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
+  <span class='ivar'>@compact</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update_checksum!-instance_method">
+  
+    - (<tt>self</tt>) <strong>update_checksum!</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Requires that the checksum digits were left as &#39;??&#39;, replaces them
+with the proper checksum.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>self</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+433
+434
+435
+436
+437
+438
+439</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 433</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update_checksum!'>update_checksum!</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Checksum digit placeholders missing</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='ivar'>@compact</span><span class='lbracket'>[</span><span class='int'>2</span><span class='comma'>,</span><span class='int'>2</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>??</span><span class='tstring_end'>&#39;</span></span>
+
+  <span class='ivar'>@compact</span><span class='lbracket'>[</span><span class='int'>2</span><span class='comma'>,</span><span class='int'>2</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_calculated_check_digits'>calculated_check_digits</span>
+
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="valid?-instance_method">
+  
+    - (<tt>true</tt>, <tt>false</tt>) <strong>valid?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns Whether the IBAN is valid. See <span class='object_link'><a href="#validate-instance_method" title="ISO::IBAN#validate (method)">#validate</a></span> for details.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Whether the IBAN is valid. See <span class='object_link'><a href="#validate-instance_method" title="ISO::IBAN#validate (method)">#validate</a></span> for details.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+308
+309
+310</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 308</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_valid?'>valid?</span>
+  <span class='id identifier rubyid_valid_country?'>valid_country?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_valid_checksum?'>valid_checksum?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_valid_length?'>valid_length?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_valid_format?'>valid_format?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="valid_characters?-instance_method">
+  
+    - (<tt>true</tt>, <tt>false</tt>) <strong>valid_characters?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns Whether IBAN consists only of valid characters.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Whether IBAN consists only of valid characters.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+396
+397
+398</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 396</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_valid_characters?'>valid_characters?</span>
+  <span class='ivar'>@compact</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A[A-Z]{2}(?:\d\d|\?\?)[A-Z0-9]*\z</span><span class='regexp_end'>/in</span></span> <span class='op'>?</span> <span class='kw'>true</span> <span class='op'>:</span> <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="valid_checksum?-instance_method">
+  
+    - (<tt>true</tt>, <tt>false</tt>) <strong>valid_checksum?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns Whether the checksum of the IBAN is valid.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Whether the checksum of the IBAN is valid.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+416
+417
+418
+419
+420</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 416</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_valid_checksum?'>valid_checksum?</span>
+  <span class='id identifier rubyid_numerified'>numerified</span> <span class='op'>=</span> <span class='id identifier rubyid_numeric'>numeric</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_numerified'>numerified</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_numerified'>numerified</span> <span class='op'>%</span> <span class='int'>97</span> <span class='op'>==</span> <span class='int'>1</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="valid_country?-instance_method">
+  
+    - (<tt>true</tt>, <tt>false</tt>) <strong>valid_country?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns Whether the country of the IBAN is valid.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Whether the country of the IBAN is valid.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+401
+402
+403</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 401</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_valid_country?'>valid_country?</span>
+  <span class='ivar'>@specification</span> <span class='op'>?</span> <span class='kw'>true</span> <span class='op'>:</span> <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="valid_format?-instance_method">
+  
+    - (<tt>true</tt>, <tt>false</tt>) <strong>valid_format?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns Whether the format of the IBAN is valid.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Whether the format of the IBAN is valid.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+406
+407
+408</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 406</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_valid_format?'>valid_format?</span>
+  <span class='ivar'>@specification</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@specification</span><span class='period'>.</span><span class='id identifier rubyid_iban_regex'>iban_regex</span> <span class='op'>=~</span> <span class='ivar'>@compact</span> <span class='op'>?</span> <span class='kw'>true</span> <span class='op'>:</span> <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="valid_length?-instance_method">
+  
+    - (<tt>true</tt>, <tt>false</tt>) <strong>valid_length?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns Whether the length of the IBAN is valid.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Whether the length of the IBAN is valid.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+411
+412
+413</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 411</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_valid_length?'>valid_length?</span>
+  <span class='ivar'>@specification</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@compact</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='ivar'>@specification</span><span class='period'>.</span><span class='id identifier rubyid_iban_length'>iban_length</span> <span class='op'>?</span> <span class='kw'>true</span> <span class='op'>:</span> <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="validate-instance_method">
+  
+    - (<tt>Array&lt;Symbol&gt;</tt>) <strong>validate</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>The class method <span class='object_link'><a href="#validate-class_method" title="ISO::IBAN.validate (method)">validate</a></span> uses <span class='object_link'><a href="#parse-class_method" title="ISO::IBAN.parse (method)">parse</a></span>, which means
+it will strip whitespace and dashes from the IBAN.<br>
+<span class='object_link'><a href="#initialize-instance_method" title="ISO::IBAN#initialize (method)">#initialize</a></span> on the other hand expects the IBAN in compact format
+and will not strip those characters.</p>
+</div>
+  </div>
+
+
+<p>Validation error codes:</p>
+<ul><li>
+<p>:invalid_characters</p>
+</li><li>
+<p>:invalid_country</p>
+</li><li>
+<p>:invalid_checksum</p>
+</li><li>
+<p>:invalid_length</p>
+</li><li>
+<p>:invalid_format</p>
+</li></ul>
+
+<p>Invalid characters means that the IBAN contains characters which are not in
+the set of A-Za-z0-9. See <span class='object_link'><a href="#invalid_characters-instance_method" title="ISO::IBAN#invalid_characters (method)">#invalid_characters</a></span>.<br> Invalid country means
+the country is unknown (character 1 &amp; 2 in the IBAN).<br> Invalid
+checksum means the two check digits (character 3 &amp; 4 in the IBAN).<br>
+Invalid length means the IBAN does not comply with the length specified for
+the country of that IBAN.<br> Invalid format means the IBAN does not comply
+with the format specified for the country of that IBAN.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Symbol&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>An array with a code of all validation errors, empty if valid.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/iso/iban/no_autoload.rb', line 333</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_validate'>validate</span>
+  <span class='id identifier rubyid_errors'>errors</span>   <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_errors'>errors</span> <span class='op'>&lt;&lt;</span> <span class='symbol'>:invalid_characters</span> <span class='kw'>unless</span> <span class='id identifier rubyid_valid_characters?'>valid_characters?</span>
+  <span class='id identifier rubyid_errors'>errors</span> <span class='op'>&lt;&lt;</span> <span class='symbol'>:invalid_country</span>    <span class='kw'>unless</span> <span class='id identifier rubyid_valid_country?'>valid_country?</span>
+  <span class='id identifier rubyid_errors'>errors</span> <span class='op'>&lt;&lt;</span> <span class='symbol'>:invalid_checksum</span>   <span class='kw'>unless</span> <span class='id identifier rubyid_valid_characters?'>valid_characters?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_valid_checksum?'>valid_checksum?</span>
+  <span class='id identifier rubyid_errors'>errors</span> <span class='op'>&lt;&lt;</span> <span class='symbol'>:invalid_length</span>     <span class='kw'>unless</span> <span class='id identifier rubyid_valid_length?'>valid_length?</span>
+  <span class='id identifier rubyid_errors'>errors</span> <span class='op'>&lt;&lt;</span> <span class='symbol'>:invalid_format</span>     <span class='kw'>unless</span> <span class='id identifier rubyid_valid_format?'>valid_format?</span>
+
+  <span class='id identifier rubyid_errors'>errors</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Mon Feb 17 20:29:16 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-2.1.0).
+</div>
+
+  </body>
+</html>
