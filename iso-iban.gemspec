@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name                      = "iso-iban"
-  s.version                   = "0.0.4"
+  s.version                   = "0.1.0"
   s.authors                   = "Stefan Rusterholz"
   s.email                     = "stefan.rusterholz@gmail.com"
   s.homepage                  = "https://github.com/apeiros/iso-iban"
@@ -15,6 +15,18 @@ Gem::Specification.new do |s|
   s.summary                   = <<-SUMMARY.gsub(/^    /, '').chomp
     Utilities for International Bank Account Numbers (IBAN) as per ISO 13616-1.
   SUMMARY
+
+  s.post_install_message      = <<-POST_INSTALL_MESSAGE.gsub(/^    /, '').chomp
+    IMPORTANT!
+
+    As of 0.1.0, there are 2 backward incompatible changes:
+
+    * `require 'iso/iban/autoload'` is deprecated. Please use plain `require 'iso/iban'`.
+      To load ISO::IBAN without loading the specifications, please use
+      `require 'iso/iban/no_autoload'`.
+    * ISO::IBAN.new no longer accepts formatted input.
+      Use ISO::IBAN.parse if your input is potentially not in the compact format.
+  POST_INSTALL_MESSAGE
 
   s.files                     =
     Dir['bin/**/*'] +

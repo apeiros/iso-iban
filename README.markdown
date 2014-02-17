@@ -4,22 +4,36 @@ README
 
 Summary
 -------
+
 ISO::IBAN implements IBAN (International Bank Account Number) specification as per ISO 13616-1.
 It provides methods to generate valid IBAN numbers from components, or to validate a given IBAN.
 
 
 Installation
 ------------
-`gem install iso-iban`
+
+### Via rubygems
+
+    gem install iso-iban
+
+### From github
+
+    git clone https://github.com/apeiros/iso-iban.git
+    cd iso-iban
+    rm -r *.gem
+    gem build *.gemspec
+    gem install *.gem
 
 
 Usage
 -----
 
-    ISO::IBAN.valid?('CH35 1234 5987 6543 2109 A')     # => true
-    ISO::IBAN.validate('CH37 1234 5987 6543 2109 A')   # => [:invalid_checksum]
-    ISO::IBAN.generate('CH', '12345', '987')           # => #<ISO::IBAN CH76 1234 5000 0000 0098 7>
-    iban = ISO::IBAN.new('CH35 1234 5987 6543 2109 A') # => #<ISO::IBAN CH35 1234 5987 6543 2109 A>
+    require 'iso/iban'
+    ISO::IBAN.valid?('CH35 1234 5987 6543 2109 A')       # => true
+    ISO::IBAN.validate('CH37 1234 5987 6543 2109 A')     # => [:invalid_checksum]
+    ISO::IBAN.generate('CH', '12345', '987')             # => #<ISO::IBAN CH76 1234 5000 0000 0098 7>
+    iban = ISO::IBAN.parse('CH35 1234 5987 6543 2109 A') # => #<ISO::IBAN CH35 1234 5987 6543 2109 A>
+    iban = ISO::IBAN.new('CH351234598765432109A')        # => #<ISO::IBAN CH35 1234 5987 6543 2109 A>
     iban.formatted       # => "CH35 1234 5987 6543 2109 A"
     iban.compact         # => "CH351234598765432109A"
     iban.country         # => "CH"
@@ -28,6 +42,18 @@ Usage
     iban.account_code    # => "98765432109A"
     iban.valid?          # => true
     iban.validate        # => []
+
+Note: iso/iban automatically loads the IBAN specifications delivered with the gem. If you do not wish
+those to be loaded, `require 'iso/iban/no_autoload'` instead.
+
+
+ENV
+---
+
+ISO::IBAN.load_specifications (which is automatically called when you require 'iso/iban') uses the
+ENV variable `IBAN_SPECIFICATIONS` to determine where to look for IBAN specifications. If that
+variable is not set, it will default to the datafile delivered with the gem.
+
 
 Links
 -----

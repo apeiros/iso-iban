@@ -56,6 +56,24 @@ module ISO
   #   registration authority exclusively by the National Standards Body or the
   #   National Central Bank of the country.
   class IBAN
+
+    # Raised by ISO::IBAN::parse!
+    class InvalidIban < ArgumentError
+
+      # @return [Array<Symbol>] The errors in the IBAN.
+      # @see ISO::IBAN#validate
+      attr_reader :errors
+
+      # @return [ISO::IBAN] The faulty IBAN.
+      attr_reader :iban
+
+      def initialize(iban)
+        super("The IBAN #{iban.formatted} is invalid (#{@errors.join(', ')})")
+        @iban   = iban
+        @errors = iban.validate
+      end
+    end
+
     include Comparable
 
     # Character code translation used to convert an IBAN into its numeric
@@ -77,6 +95,10 @@ module ISO
     # All specifications, see ISO::IBAN::Specification
     @specifications = nil
 
+    # @note
+    #   Using `require 'iso/iban'` will automatically invoke this method.
+    #   If you do not wish this behavior, `require 'iso/iban/no_autoload'` instead.
+    #
     # Load the IBAN specifications file, which determines how the IBAN
     # for any given country looks like.
     #
@@ -97,7 +119,7 @@ module ISO
       elsif ENV['IBAN_SPECIFICATIONS'] then
         spec_file = ENV['IBAN_SPECIFICATIONS']
       else
-        spec_file = File.expand_path('../../../data/iso-iban/specs.yaml', __FILE__)
+        spec_file = File.expand_path('../../../../data/iso-iban/specs.yaml', __FILE__)
         if !File.file?(spec_file) && defined?(Gem) && Gem.datadir('iso-iban')
           spec_file = Gem.datadir('iso-iban')+'/specs.yaml'
         end
@@ -105,6 +127,8 @@ module ISO
 
       if spec_file && File.file?(spec_file)
         @specifications = ISO::IBAN::Specification.load_yaml(spec_file)
+      elsif spec_file
+        raise "Could not load IBAN specifications, specs file #{spec_file.inspect} does not exist or can't be read."
       else
         raise "Could not load IBAN specifications, no specs file found."
       end
@@ -115,7 +139,7 @@ module ISO
     # @return [Hash<String => ISO::IBAN::Specification>]
     #   A hash with the country (ISO3166 2-letter) as key and the specification for that country as value
     def self.specifications
-      @specifications || raise("No specifications have been loaded yet.")
+      @specifications || raise("No specifications have been loaded yet - Check the docs for ISO::IBAN::load_specifications.")
     end
 
     # @param [String] a2_country_code
@@ -134,7 +158,7 @@ module ISO
     #   Whether the IBAN is valid.
     #   See {#validate} for details.
     def self.valid?(iban)
-      new(iban).valid?
+      parse(iban).valid?
     end
 
     # @param [String] iban
@@ -144,16 +168,39 @@ module ISO
     #   An array with a code of all validation errors, empty if valid.
     #   See {#validate} for details.
     def self.validate(iban)
-      new(iban).validate
+      parse(iban).validate
     end
 
     # @param [String] iban
     #   The IBAN in either compact or human readable form.
     #
     # @return [String]
-    #   The IBAN in compact form.
+    #   The IBAN in compact form, all whitespace stripped.
     def self.strip(iban)
-      iban.tr(' -', '')
+      iban.delete("\n\r\t -")
+    end
+
+    # Like ISO::IBAN.parse, but raises a ISO::IBAN::InvalidIban exception if the IBAN is invalid.
+    #
+    # @param [String] iban
+    #   The IBAN in either compact or human readable form.
+    #
+    # @return [ISO::IBAN]
+    #   An IBAN instance representing the passed IBAN number.
+    def self.parse!(iban_number)
+      iban   = parse(iban_number)
+      raise InvalidIban.new(iban) unless iban.valid?
+
+      iban
+    end
+
+    # @param [String] iban
+    #   The IBAN in either compact or human readable form.
+    #
+    # @return [ISO::IBAN]
+    #   An IBAN instance representing the passed IBAN number.
+    def self.parse(iban_number)
+      new(strip(iban_number))
     end
 
     # Generate an IBAN from country code and components, automatically filling in the checksum.
@@ -226,11 +273,18 @@ module ISO
     attr_reader :specification
 
     # @param [String] iban
-    #   The IBAN number, either in formatted, human readable or in compact form.
+    #   The IBAN number, must be in compact form. Use ISO::IBAN::parse for formatted IBANs.
     def initialize(iban)
       raise ArgumentError, "String expected for iban, but got #{iban.class}" unless iban.is_a?(String)
+      if iban =~ /[^A-Za-z0-9?]/m
+        if iban =~ /[^A-Za-z0-9 -?]/m
+          raise ArgumentError, "IBAN #{iban.inspect} contains the following invalid characters: #{iban.delete('A-Za-z0-9').chars.uniq.sort.join.inspect} - IBAN must only consist of A-Z, a-z and 0-9."
+        else
+          raise ArgumentError, "Use ISO::IBAN.parse/.parse! for formatted IBANs. IBAN #{iban.inspect} contains the following invalid characters: #{iban.delete('A-Za-z0-9').chars.uniq.sort.join.inspect} - IBAN must only consist of A-Z, a-z and 0-9."
+        end
+      end
 
-      @compact       = self.class.strip(iban)
+      @compact       = iban.dup
       @country       = iban[0,2]
       @specification = self.class.specification(@country, nil)
     end
