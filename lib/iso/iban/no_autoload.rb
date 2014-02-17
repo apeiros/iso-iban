@@ -6,20 +6,39 @@ require 'iso/iban/specification'
 require 'iso/iban/version'
 require 'yaml'
 
+# Container for classes which implement ISO standards.
 module ISO
 
   # IBAN - ISO 13616-1
   #
+  # Usage
+  # =====
+  #
+  #     require 'iso/iban'
+  #     ISO::IBAN.valid?('CH35 1234 5987 6543 2109 A')       # => true
+  #     ISO::IBAN.validate('CH37 1234 5987 6543 2109 A')     # => [:invalid_checksum]
+  #     ISO::IBAN.generate('CH', '12345', '987')             # => #<ISO::IBAN CH76 1234 5000 0000 0098 7>
+  #     iban = ISO::IBAN.parse('CH35 1234 5987 6543 2109 A') # => #<ISO::IBAN CH35 1234 5987 6543 2109 A>
+  #     iban = ISO::IBAN.new('CH351234598765432109A')        # => #<ISO::IBAN CH35 1234 5987 6543 2109 A>
+  #     iban.formatted       # => "CH35 1234 5987 6543 2109 A"
+  #     iban.compact         # => "CH351234598765432109A"
+  #     iban.country         # => "CH"
+  #     iban.checksum_digits # => "35"
+  #     iban.bank_code       # => "12345"
+  #     iban.account_code    # => "98765432109A"
+  #     iban.valid?          # => true
+  #     iban.validate        # => []
+  #
   # General IBAN Information
   # ========================
   #
-  # * What is an IBAN?
+  # * **What is an IBAN?**  
   #   IBAN stands for International Bank Account Number. It is the ISO 13616
   #   international standard for numbering bank accounts. In 2006, the
   #   International Organization for Standardization (ISO) designated SWIFT as
   #   the Registration Authority for ISO 13616.
   #
-  # * Use
+  # * **Use**  
   #   The IBAN facilitates the communication and processing of cross-border
   #   transactions. It allows exchanging account identification details in a
   #   machine-readable form.
@@ -28,7 +47,7 @@ module ISO
   # The ISO 13616 IBAN Standard
   # ===========================
   #
-  # * Structure
+  # * **Structure**  
   #   The IBAN structure is defined in ISO 13616-1 and consists of a two-letter
   #   ISO 3166-1 country code, followed by two check digits and up to thirty
   #   alphanumeric characters for a BBAN (Basic Bank Account Number) which has a
@@ -36,24 +55,20 @@ module ISO
   #   fixed position and a fixed length per country. The check digits are
   #   calculated based on the scheme defined in ISO/IEC 7064 (MOD97-10).
   #
-  # * Terms and definitions
-  #   Bank identifier: The identifier that uniquely identifies the financial
-  #   institution and, when appropriate, the branch of that financial institution
-  #   servicing an account
+  # * **Terms and definitions**  
+  #     * *Bank identifier:* The identifier that uniquely identifies the financial
+  #       institution and, when appropriate, the branch of that financial institution
+  #       servicing an account.  
+  #     * *BBAN:* basic bank account number: The identifier that uniquely identifies
+  #       an individual account, at a specific financial institution, in a particular
+  #       country. The BBAN includes a bank identifier of the financial institution
+  #       servicing that account.  
+  #     * *IBAN:* international bank account number: The expanded version of the
+  #       basic bank account number (BBAN), intended for use internationally. The
+  #       IBAN uniquely identifies an individual account, at a specific financial
+  #       institution, in a particular country.
   #
-  #   `In this registry, the branch identifier format is shown specifically, when
-  #   present.`
-  #
-  #   *BBAN*: basic bank account number: The identifier that uniquely identifies
-  #   an individual account, at a specific financial institution, in a particular
-  #   country. The BBAN includes a bank identifier of the financial institution
-  #   servicing that account.
-  #   *IBAN*: international bank account number: The expanded version of the
-  #   basic bank account number (BBAN), intended for use internationally. The
-  #   IBAN uniquely identifies an individual account, at a specific financial
-  #   institution, in a particular country.
-  #
-  # * Submitters
+  # * **Submitters**  
   #   Nationally-agreed, ISO13616-compliant IBAN formats are submitted to the
   #   registration authority exclusively by the National Standards Body or the
   #   National Central Bank of the country.
@@ -88,9 +103,9 @@ module ISO
     #
     # It will use the following sources in this order (first one which exists wins)
     #
-    # * Path passed as spec_file parameter
-    # * Path provided by the env variable IBAN_SPECIFICATIONS
-    # * The file ../data/iso-iban/specs.yaml relative to the lib dir
+    # * Path passed as `spec_file` parameter
+    # * Path provided by the env variable `IBAN_SPECIFICATIONS`
+    # * The file `../data/iso-iban/specs.yaml` relative to the lib dir
     # * The Gem datadir path
     #
     # @param [String] spec_file
@@ -121,7 +136,7 @@ module ISO
     end
 
     # @return [Hash<String => ISO::IBAN::Specification>]
-    #   A hash with the country (ISO3166 2-letter) as key and the specification for that country as value
+    #   A hash with the country (ISO3166 2-letter) as key and the specification for that country as value.
     def self.specifications
       @specifications || raise("No specifications have been loaded yet - Check the docs for ISO::IBAN::load_specifications.")
     end
@@ -130,7 +145,7 @@ module ISO
     #   The country (ISO3166 2-letter), e.g. 'CH' or 'DE'.
     #
     # @return [ISO::IBAN::Specification]
-    #   The specification for the given country
+    #   The specification for the given country.
     def self.specification(a2_country_code, *default, &default_block)
       specifications.fetch(a2_country_code, *default, &default_block)
     end
@@ -139,7 +154,7 @@ module ISO
     #   An IBAN number, either in compact or human format.
     #
     # @return [true, false]
-    #   Whether the IBAN is valid.
+    #   Whether the IBAN is valid.  
     #   See {#validate} for details.
     def self.valid?(iban)
       parse(iban).valid?
@@ -149,7 +164,7 @@ module ISO
     #   An IBAN number, either in compact or human format.
     #
     # @return [Array<Symbol>]
-    #   An array with a code of all validation errors, empty if valid.
+    #   An array with a code of all validation errors, empty if valid.  
     #   See {#validate} for details.
     def self.validate(iban)
       parse(iban).validate
@@ -166,7 +181,7 @@ module ISO
 
     # Like ISO::IBAN.parse, but raises a ISO::IBAN::Invalid exception if the IBAN is invalid.
     #
-    # @param [String] iban
+    # @param [String] iban_number
     #   The IBAN in either compact or human readable form.
     #
     # @return [ISO::IBAN]
@@ -178,7 +193,7 @@ module ISO
       iban
     end
 
-    # @param [String] iban
+    # @param [String] iban_number
     #   The IBAN in either compact or human readable form.
     #
     # @return [ISO::IBAN]
@@ -188,6 +203,11 @@ module ISO
     end
 
     # Generate an IBAN from country code and components, automatically filling in the checksum.
+    #
+    # @note
+    #   `generate` will pad all segments with zeros, which means it will generate invalid
+    #   IBANs if you provide too short segments which are alphabetic only.  
+    #   For example, `ISO::IBAN.generate('BG', 'A', '2', 'C')` generates an invalid IBAN.
     #
     # @example Generate an IBAN for UBS Switzerland with account number '12345'
     #     ISO::IBAN.generate('CH', '216', '12345') # => #<ISO::IBAN CH92 0021 6000 0000 1234 5>
@@ -205,10 +225,9 @@ module ISO
     end
 
     # @param [String] countries
-    #   A list of 2 letter country codes. If empty, all countries in
-    #   ISO::IBAN::specifications are used.
+    #   A list of 2 letter country codes. If empty, all countries in ISO::IBAN::specifications are used.
     #
-    # @return [ISO::IBAN] A random, valid IBAN
+    # @return [ISO::IBAN] A random, valid IBAN.
     def self.random(*countries)
       countries = specifications.keys if countries.empty?
       country   = countries.sample
@@ -275,9 +294,10 @@ module ISO
       @_formatted ||= @compact.gsub(/.{4}(?=.)/, '\0 ')
     end
 
-    # @return [String]
+    # @return [Integer, nil]
     #   IBAN in its numeric form, i.e. all characters a-z are replaced with their corresponding
-    #   digit sequences.
+    #   digit sequences.  
+    #   Will return nil if the IBAN is shorter than 5 characters (which makes it invalid).
     def numeric
       @compact.size < 5 ? nil : self.class.numerify(@compact[4..-1]+@compact[0,4])
     end
@@ -290,9 +310,9 @@ module ISO
     end
 
     # @note
-    #   {ISO::IBAN::validate} uses {ISO::IBAN::parse}, which means it will strip whitespace and
-    #   dashes from the IBAN.
-    #   {ISO::IBAN::new} on the other hand expects the IBAN in compact format and will not strip
+    #   The class method {ISO::IBAN.validate} uses {ISO::IBAN.parse}, which means it will strip whitespace and
+    #   dashes from the IBAN.  
+    #   {ISO::IBAN#initialize} on the other hand expects the IBAN in compact format and will not strip
     #   those characters.
     #
     # Validation error codes:
@@ -303,11 +323,11 @@ module ISO
     # * :invalid_length
     # * :invalid_format
     #
-    # Invalid characters means that the IBAN contains characters which are not in the set of A-Za-z0-9. See {#invalid_characters}
-    # Invalid country means the country is unknown (character 1 & 2 in the IBAN).
-    # Invalid checksum means the two check digits (character 3 & 4 in the IBAN).
-    # Invalid length means the IBAN does not comply with the length specified for the country of that IBAN.
-    # Invalid format means the IBAN does not comply with the format specified for the country of that IBAN.
+    # Invalid characters means that the IBAN contains characters which are not in the set of A-Za-z0-9. See {#invalid_characters}.  
+    # Invalid country means the country is unknown (character 1 & 2 in the IBAN).  
+    # Invalid checksum means the two check digits (character 3 & 4 in the IBAN).  
+    # Invalid length means the IBAN does not comply with the length specified for the country of that IBAN.  
+    # Invalid format means the IBAN does not comply with the format specified for the country of that IBAN.  
     #
     # @return [Array<Symbol>] An array with a code of all validation errors, empty if valid.
     def validate

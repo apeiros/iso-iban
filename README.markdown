@@ -43,7 +43,7 @@ Usage
     iban.valid?          # => true
     iban.validate        # => []
 
-Note: iso/iban automatically loads the IBAN specifications delivered with the gem. If you do not wish
+**Note:** iso/iban automatically loads the IBAN specifications delivered with the gem. If you do not wish
 those to be loaded, `require 'iso/iban/no_autoload'` instead.
 
 
