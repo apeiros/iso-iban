@@ -1,5 +1,6 @@
 # encoding: utf-8
 
+require 'iso/iban/invalid'
 require 'iso/iban/specification'
 require 'iso/iban/version'
 require 'yaml'
@@ -56,24 +57,6 @@ module ISO
   #   registration authority exclusively by the National Standards Body or the
   #   National Central Bank of the country.
   class IBAN
-
-    # Raised by ISO::IBAN::parse!
-    class InvalidIban < ArgumentError
-
-      # @return [Array<Symbol>] The errors in the IBAN.
-      # @see ISO::IBAN#validate
-      attr_reader :errors
-
-      # @return [ISO::IBAN] The faulty IBAN.
-      attr_reader :iban
-
-      def initialize(iban)
-        super("The IBAN #{iban.formatted} is invalid (#{@errors.join(', ')})")
-        @iban   = iban
-        @errors = iban.validate
-      end
-    end
-
     include Comparable
 
     # Character code translation used to convert an IBAN into its numeric
@@ -180,7 +163,7 @@ module ISO
       iban.delete("\n\r\t -")
     end
 
-    # Like ISO::IBAN.parse, but raises a ISO::IBAN::InvalidIban exception if the IBAN is invalid.
+    # Like ISO::IBAN.parse, but raises a ISO::IBAN::Invalid exception if the IBAN is invalid.
     #
     # @param [String] iban
     #   The IBAN in either compact or human readable form.
@@ -189,7 +172,7 @@ module ISO
     #   An IBAN instance representing the passed IBAN number.
     def self.parse!(iban_number)
       iban   = parse(iban_number)
-      raise InvalidIban.new(iban) unless iban.valid?
+      raise Invalid.new(iban) unless iban.valid?
 
       iban
     end
