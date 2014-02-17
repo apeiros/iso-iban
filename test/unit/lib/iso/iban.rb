@@ -73,6 +73,8 @@ suite "ISO::IBAN" do
     assert_equal [:invalid_length, :invalid_format], ISO::IBAN.validate('CH83 X234 5987 6543 2109 AB')
     assert_equal [:invalid_checksum, :invalid_length, :invalid_format], ISO::IBAN.validate('CH99 X234 5987 6543 2109 AB')
     assert_equal [:invalid_country, :invalid_checksum, :invalid_length, :invalid_format], ISO::IBAN.validate('XX35 1234 5987 6543 2109 A')
+    assert_equal [:invalid_characters, :invalid_checksum, :invalid_length, :invalid_format], ISO::IBAN.validate('CH35 1234 5987 6543 2109 Ä')
+    assert_equal [:invalid_characters, :invalid_country, :invalid_checksum, :invalid_length, :invalid_format], ISO::IBAN.validate('XX35 1234 5987 6543 2109 Ä')
   end
 
   test "ISO::IBAN::parse" do
@@ -131,6 +133,11 @@ suite "ISO::IBAN" do
 
   test "ISO::IBAN#validate" do
     assert_equal [], ISO::IBAN.parse('CH35 1234 5987 6543 2109 A').validate
+  end
+
+  test 'ISO::IBAN#invalid_characters' do
+    assert_equal ["\xC3".b, "\x84".b], ISO::IBAN.parse('Ä').invalid_characters
+    assert_equal ['Ä'],                ISO::IBAN.parse('Ä').invalid_characters('utf-8')
   end
 
   test "ISO::IBAN#<=>" do
