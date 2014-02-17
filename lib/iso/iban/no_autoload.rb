@@ -389,7 +389,7 @@ module ISO
     def invalid_characters(input_encoding=nil)
       iban = input_encoding ? @compact.dup.force_encoding(input_encoding) : @compact
 
-      iban.gsub(/[A-Z0-9?]*/i, '').chars.uniq
+      iban.gsub(/[A-Z0-9?]*/i, '').chars.to_a.uniq # to_a is for ruby <= 2.0 where String#chars returns an Enumerator
     end
 
     # @return [true, false] Whether IBAN consists only of valid characters.
