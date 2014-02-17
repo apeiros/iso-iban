@@ -75,58 +75,62 @@ suite "ISO::IBAN" do
     assert_equal [:invalid_country, :invalid_checksum, :invalid_length, :invalid_format], ISO::IBAN.validate('XX35 1234 5987 6543 2109 A')
   end
 
+  test "ISO::IBAN::parse" do
+    assert_kind_of ISO::IBAN, ISO::IBAN.parse('CH35 1234 5987 6543 2109 A')
+    assert_equal 'CH351234598765432109A', ISO::IBAN.parse('CH35 1234 5987 6543 2109 A').compact
+  end
+
   test "ISO::IBAN::new" do
-    assert_kind_of ISO::IBAN, ISO::IBAN.new('CH35 1234 5987 6543 2109 A')
     assert_kind_of ISO::IBAN, ISO::IBAN.new('CH351234598765432109A')
   end
 
   test "ISO::IBAN#formatted" do
-    assert_equal 'CH35 1234 5987 6543 2109 A', ISO::IBAN.new('CH35 1234 5987 6543 2109 A').formatted
-    assert_equal 'CH35 1234 5987 6543 2109 A', ISO::IBAN.new('CH351234598765432109A').formatted
+    assert_equal 'CH35 1234 5987 6543 2109 A', ISO::IBAN.parse('CH35 1234 5987 6543 2109 A').formatted
+    assert_equal 'CH35 1234 5987 6543 2109 A', ISO::IBAN.parse('CH351234598765432109A').formatted
   end
 
   test "ISO::IBAN#compact" do
-    assert_equal 'CH351234598765432109A', ISO::IBAN.new('CH35 1234 5987 6543 2109 A').compact
-    assert_equal 'CH351234598765432109A', ISO::IBAN.new('CH351234598765432109A').compact
+    assert_equal 'CH351234598765432109A', ISO::IBAN.parse('CH35 1234 5987 6543 2109 A').compact
+    assert_equal 'CH351234598765432109A', ISO::IBAN.parse('CH351234598765432109A').compact
   end
 
   test "ISO::IBAN#to_s" do
-    assert_equal 'CH351234598765432109A', ISO::IBAN.new('CH35 1234 5987 6543 2109 A').to_s
-    assert_equal 'CH351234598765432109A', ISO::IBAN.new('CH351234598765432109A').to_s
+    assert_equal 'CH351234598765432109A', ISO::IBAN.parse('CH35 1234 5987 6543 2109 A').to_s
+    assert_equal 'CH351234598765432109A', ISO::IBAN.parse('CH351234598765432109A').to_s
   end
 
   test "ISO::IBAN#country" do
-    assert_equal 'CH', ISO::IBAN.new('CH35 1234 5987 6543 2109 A').country
+    assert_equal 'CH', ISO::IBAN.parse('CH35 1234 5987 6543 2109 A').country
   end
 
   test "ISO::IBAN#checksum_digits" do
-    assert_equal '35', ISO::IBAN.new('CH35 1234 5987 6543 2109 A').checksum_digits
+    assert_equal '35', ISO::IBAN.parse('CH35 1234 5987 6543 2109 A').checksum_digits
   end
 
   test "ISO::IBAN#bban" do
-    assert_equal '1234598765432109A', ISO::IBAN.new('CH35 1234 5987 6543 2109 A').bban
+    assert_equal '1234598765432109A', ISO::IBAN.parse('CH35 1234 5987 6543 2109 A').bban
   end
 
   test "ISO::IBAN#bank_code" do
-    assert_equal '12345', ISO::IBAN.new('CH35 1234 5987 6543 2109 A').bank_code
+    assert_equal '12345', ISO::IBAN.parse('CH35 1234 5987 6543 2109 A').bank_code
   end
 
   test "ISO::IBAN#branch_code" do
     ISO::IBAN.instance_variable_set(:@specifications, {'BG' => ISO::IBAN::Specification.new("Bulgaria", "BG", "BG2!n4!a4!n2!n8!c", 22, "4!a4!n2!n8!c", 18, 4, 7, 8, 11)})
-    assert_equal "0002", ISO::IBAN.new('BG69 0001 0002 0300 0000 04').branch_code
+    assert_equal "0002", ISO::IBAN.parse('BG69 0001 0002 0300 0000 04').branch_code
   end
 
   test "ISO::IBAN#account_code" do
-    assert_equal '98765432109A', ISO::IBAN.new('CH35 1234 5987 6543 2109 A').account_code
+    assert_equal '98765432109A', ISO::IBAN.parse('CH35 1234 5987 6543 2109 A').account_code
   end
 
   test "ISO::IBAN#valid?" do
-    assert_equal true,  ISO::IBAN.new('CH35 1234 5987 6543 2109 A').valid?
-    assert_equal false, ISO::IBAN.new('CH99 1234 5987 6543 2109 A').valid?
+    assert_equal true,  ISO::IBAN.parse('CH35 1234 5987 6543 2109 A').valid?
+    assert_equal false, ISO::IBAN.parse('CH99 1234 5987 6543 2109 A').valid?
   end
 
   test "ISO::IBAN#validate" do
-    assert_equal [], ISO::IBAN.new('CH35 1234 5987 6543 2109 A').validate
+    assert_equal [], ISO::IBAN.parse('CH35 1234 5987 6543 2109 A').validate
   end
 
   test "ISO::IBAN#<=>" do
@@ -140,11 +144,11 @@ suite "ISO::IBAN" do
   end
 
   test "ISO::IBAN#to_a" do
-    assert_equal %w[CH 35 12345 98765432109A], ISO::IBAN.new("CH351234598765432109A").to_a
-    assert_equal [], ISO::IBAN.new("XX351234598765432109A").to_a # no specification
+    assert_equal %w[CH 35 12345 98765432109A], ISO::IBAN.parse("CH351234598765432109A").to_a
+    assert_equal [], ISO::IBAN.parse("XX351234598765432109A").to_a # no specification
   end
 
   test "ISO::IBAN#inspect" do
-    assert_equal "#<ISO::IBAN CH35 1234 5987 6543 2109 A>", ISO::IBAN.new('CH35 1234 5987 6543 2109 A').inspect
+    assert_equal "#<ISO::IBAN CH35 1234 5987 6543 2109 A>", ISO::IBAN.parse('CH35 1234 5987 6543 2109 A').inspect
   end
 end
