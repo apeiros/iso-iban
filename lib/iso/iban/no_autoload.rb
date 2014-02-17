@@ -123,6 +123,8 @@ module ISO
 
       if spec_file && File.file?(spec_file)
         @specifications = ISO::IBAN::Specification.load_yaml(spec_file)
+      elsif spec_file
+        raise "Could not load IBAN specifications, specs file #{spec_file.inspect} does not exist or can't be read."
       else
         raise "Could not load IBAN specifications, no specs file found."
       end
