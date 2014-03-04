@@ -306,7 +306,7 @@ module ISO
     #   Whether the IBAN is valid.
     #   See {#validate} for details.
     def valid?
-      valid_country? && valid_checksum? && valid_length? && valid_format?
+      valid_characters? && valid_country? && valid_checksum? && valid_length? && valid_format?
     end
 
     # @note

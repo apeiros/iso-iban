@@ -62,6 +62,7 @@ suite "ISO::IBAN" do
   test 'ISO::IBAN::valid?' do
     assert ISO::IBAN.valid?('CH35 1234 5987 6543 2109 A')
     assert !ISO::IBAN.valid?('CH99 1234 5987 6543 2109 A')
+    assert !ISO::IBAN.valid?('CH150+') # raised before 0.1.0, fixed in 0.1.1
     assert !ISO::IBAN.valid?('foo')
   end
 
