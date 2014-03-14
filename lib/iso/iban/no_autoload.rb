@@ -434,6 +434,7 @@ module ISO
       raise "Checksum digit placeholders missing" unless @compact[2,2] == '??'
 
       @compact[2,2] = calculated_check_digits
+      @_formatted   = nil
 
       self
     end
