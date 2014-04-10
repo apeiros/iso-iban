@@ -1,4 +1,5 @@
 $LOAD_PATH.unshift File.expand_path('lib')
+ENV['RAKE'] = "true"
 
 desc 'Updates and generates the YAML file with the IBAN specs'
 task :update_iban_specs => [:update_iban_registry, :generate_iban_specs]
@@ -16,4 +17,9 @@ task :generate_iban_specs do
 
   specs = ISO::IBAN::Specification.parse_file('dev/IBAN_Registry.txt')
   File.write('data/iso-iban/specs.yaml', Hash[specs.map { |spec| [spec.a2_country_code, spec.to_a] }].to_yaml)
+end
+
+desc 'run the tests'
+task :test do
+  require File.expand_path("../test/runner", __FILE__)
 end
