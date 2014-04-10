@@ -13,8 +13,9 @@ TEST_DIR    = File.expand_path('../../test', __FILE__)
 require 'test/unit'
 require 'helper'
 
-units = ARGV.empty? ? Dir["#{TEST_DIR}/unit/**/*.rb"] : ARGV
+units = (ARGV.empty? || ENV['RAKE']) ? Dir["#{TEST_DIR}/unit/**/*.rb"] : ARGV
 
 units.each do |unit|
+  puts unit
   load unit
 end
