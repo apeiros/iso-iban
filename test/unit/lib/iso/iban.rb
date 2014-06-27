@@ -64,6 +64,8 @@ suite "ISO::IBAN" do
     assert !ISO::IBAN.valid?('CH99 1234 5987 6543 2109 A')
     assert !ISO::IBAN.valid?('CH150+') # raised before 0.1.0, fixed in 0.1.1
     assert !ISO::IBAN.valid?('foo')
+    assert_equal false, ISO::IBAN.valid?(nil)
+    assert_equal false, ISO::IBAN.valid?('')
   end
 
   test 'ISO::IBAN::validate' do
@@ -76,6 +78,8 @@ suite "ISO::IBAN" do
     assert_equal [:invalid_country, :invalid_checksum, :invalid_length, :invalid_format], ISO::IBAN.validate('XX35 1234 5987 6543 2109 A')
     assert_equal [:invalid_characters, :invalid_checksum, :invalid_length, :invalid_format], ISO::IBAN.validate('CH35 1234 5987 6543 2109 Ä')
     assert_equal [:invalid_characters, :invalid_country, :invalid_checksum, :invalid_length, :invalid_format], ISO::IBAN.validate('XX35 1234 5987 6543 2109 Ä')
+    assert_equal [:invalid_characters, :invalid_country,  :invalid_checksum, :invalid_length, :invalid_format], ISO::IBAN.validate(nil)
+    assert_equal [:invalid_characters, :invalid_country,  :invalid_checksum, :invalid_length, :invalid_format], ISO::IBAN.validate('')
   end
 
   test "ISO::IBAN::parse" do
