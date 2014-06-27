@@ -199,7 +199,7 @@ module ISO
     # @return [ISO::IBAN]
     #   An IBAN instance representing the passed IBAN number.
     def self.parse(iban_number)
-      new(strip(iban_number))
+      new(strip(iban_number || ""))
     end
 
     # Generate an IBAN from country code and components, automatically filling in the checksum.
