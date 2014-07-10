@@ -64,6 +64,13 @@ Links
 * [RubyGems Site](https://rubygems.org/gems/iso-iban)
 
 
+Contributors
+------------
+
+* Carsten Wirth (ISO::IBAN#parse accepts nil)
+* John Cant (Travis CI)
+
+
 License
 -------
 
