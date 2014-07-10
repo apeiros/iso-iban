@@ -181,7 +181,7 @@ module ISO
 
     # Like ISO::IBAN.parse, but raises an ISO::IBAN::Invalid exception if the IBAN is invalid.
     #
-    # @param [String] iban_number
+    # @param [String, nil] iban_number
     #   The IBAN in either compact or human readable form.
     #
     # @return [ISO::IBAN]
@@ -193,7 +193,7 @@ module ISO
       iban
     end
 
-    # @param [String] iban_number
+    # @param [String, nil] iban_number
     #   The IBAN in either compact or human readable form.
     #
     # @return [ISO::IBAN]
