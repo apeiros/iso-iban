@@ -280,8 +280,8 @@ module ISO
     def initialize(iban)
       raise ArgumentError, "String expected for iban, but got #{iban.class}" unless iban.is_a?(String)
 
-      @compact       = iban.b
-      @country       = iban[0,2]
+      @compact       = iban.b.upcase
+      @country       = @compact[0,2]
       @specification = self.class.specification(@country, nil)
     end
 
