@@ -217,7 +217,18 @@ module ISO
     #
     def self.generate(country, *components)
       spec      = specification(country)
-      justified = spec.component_lengths.zip(components).map { |length, component| component.rjust(length, "0") }
+
+      if spec.component_lengths.size != components.size
+        raise ArgumentError, "#{spec.component_lengths.size} components expected but got #{components.size}."
+      end
+
+      justified = spec.component_lengths.zip(components).map { |length, component|
+        if length != component.size
+          raise ArgumentError, "Component '#{component}' is expected to be #{length} chars sized."
+        end
+
+        component.rjust(length, "0") 
+      }
       iban      = new(country+'??'+justified.join(''))
       iban.update_checksum!
 
