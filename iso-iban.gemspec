@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name                      = "iso-iban"
-  s.version                   = "0.1.3"
+  s.version                   = "0.1.4"
   s.authors                   = "Stefan Rusterholz"
   s.email                     = "stefan.rusterholz@gmail.com"
   s.homepage                  = "https://github.com/apeiros/iso-iban"
